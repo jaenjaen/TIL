@@ -8,3 +8,7 @@
 여러가지 글 찾다 찾은 구원글<br>
 이 글을 따라 the full Java SE Development Kit 8u231을 설치했다. 귀찮지만 오라클도 가입&#128529;
 4. 드.디.어 Apatana Studio 실행 가능
+
+# Apatana Studio
+---------------------------------------------------
+* 처음 default 주소를 잘못 설정했다면 환경설정에 들어가서 General > Startup and Shutdown > Propt for workspace on startup 체크 > restart
