@@ -5,4 +5,6 @@
 
 1. <https://nodejs.org/ko/>에서 운영체제에 맞는 Node.js설치 (12.13.1LTS 버전 다운받았음)
 2. Apatana Studio 설치 <http://www.aptana.com> (3.7.2.201807301111 버전 다운 받음)
+3. Java가 설치 되어있지 않을 경우 설치 - 윗 버전 기준 1.8 이상의 JVM이 필요
+
 
