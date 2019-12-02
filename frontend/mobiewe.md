@@ -11,4 +11,12 @@
 
 # Apatana Studio
 ---------------------------------------------------
-* 처음 default 주소를 잘못 설정했다면 환경설정에 들어가서 General > Startup and Shutdown > Propt for workspace on startup 체크 > restart
+* 처음 default 주소를 잘못 설정했다면 환경설정에 들어가서 <br>
+General > Startup and Shutdown > Propt for workspace on startup 체크 > restart
+* Appearance에서 글꼴,크기 등 변경 가능<br>
+- 나눔고딕 코딩글꼴 <https://github.com/naver/nanumfont>
+
+### Project 시작하기
+1. Web Project 만들기
+2. New From Template > HTML > HTML5
+
