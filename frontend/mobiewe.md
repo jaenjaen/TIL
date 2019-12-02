@@ -9,14 +9,14 @@
 이 글을 따라 the full Java SE Development Kit 8u231을 설치했다. 귀찮지만 오라클도 가입&#128529;
 4. 드.디.어 Apatana Studio 실행 가능
 
-# Apatana Studio
+# Apatana Studio 설정
 ---------------------------------------------------
 * 처음 default 주소를 잘못 설정했다면 환경설정에 들어가서 <br>
 General > Startup and Shutdown > Propt for workspace on startup 체크 > restart
 * Appearance에서 글꼴,크기 등 변경 가능<br>
 - 나눔고딕 코딩글꼴 <https://github.com/naver/nanumfont>
+*  코드를 실행할 프로그램 설정은 Run configueration에서
 
 ### Project 시작하기
 1. Web Project 만들기
 2. New From Template > HTML > HTML5
-
