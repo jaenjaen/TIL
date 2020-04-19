@@ -15,19 +15,19 @@ public class BookTest {
 		aaa : while(true)
 		{
 			String menu = "";
-			menu += "¹øÈ£¸¦ ¼±ÅÃÇÏ¼¼¿ä\n";
-			menu += "1:µ¥ÀÌÅÍ ÀÔ·Â ±â´É\t";
-			menu += "2:µ¥ÀÌÅÍ ÀüÃ¼ °Ë»ö±â´É\n";
-			menu += "3:isbnÀ¸·Î Á¤º¸¸¦ °Ë»öÇÏ´Â ±â´É\t";
-			menu += "4:Title·Î Á¤º¸¸¦ °Ë»öÇÏ´Â ±â´É(ÆÄ¶ó¸ŞÅÍ·Î ÁÖ¾îÁø Á¦¸ñÀ» Æ÷ÇÔÇÏ´Â ¸ğµç Á¤º¸)\n";
-			menu += "5:Book¸¸ °Ë»öÇÏ´Â ±â´É\t";
-			menu += "6:Magazine¸¸ °Ë»öÇÏ´Â ±â´É\n";
-			menu += "7: MagazineÁß ¿ÃÇØ ÀâÁö¸¸ °Ë»öÇÏ´Â ±â´É\t";
-			menu += "8: ÃâÆÇ»ç·Î °Ë»öÇÏ´Â ±â´É\n";
-			menu += "9: °¡°İÀ¸·Î °Ë»ö ±â´É(ÆÄ¶ó¸ŞÅÍ·Î ÁÖ¾îÁø °¡°İº¸´Ù ³·Àº µµ¼­ Á¤º¸ °Ë»ö)\t";
-			menu += "10:ÀúÀåµÈ ¸ğµç µµ¼­ÀÇ ±İ¾× ÇÕ°è¸¦ ±¸ÇÏ´Â ±â´É\n";
-			menu += "11:ÀúÀåµÈ ¸ğµç µµ¼­ÀÇ ±İ¾× Æò±ÕÀ» ±¸ÇÏ´Â ±â´É\t";
-			menu += "0:³¡³»±â";
+			menu += "ë²ˆí˜¸ë¥¼ ì„ íƒí•˜ì„¸ìš”\n";
+			menu += "1:ë°ì´í„° ì…ë ¥ ê¸°ëŠ¥\t";
+			menu += "2:ë°ì´í„° ì „ì²´ ê²€ìƒ‰ê¸°ëŠ¥\n";
+			menu += "3:isbnìœ¼ë¡œ ì •ë³´ë¥¼ ê²€ìƒ‰í•˜ëŠ” ê¸°ëŠ¥\t";
+			menu += "4:Titleë¡œ ì •ë³´ë¥¼ ê²€ìƒ‰í•˜ëŠ” ê¸°ëŠ¥(íŒŒë¼ë©”í„°ë¡œ ì£¼ì–´ì§„ ì œëª©ì„ í¬í•¨í•˜ëŠ” ëª¨ë“  ì •ë³´)\n";
+			menu += "5:Bookë§Œ ê²€ìƒ‰í•˜ëŠ” ê¸°ëŠ¥\t";
+			menu += "6:Magazineë§Œ ê²€ìƒ‰í•˜ëŠ” ê¸°ëŠ¥\n";
+			menu += "7: Magazineì¤‘ ì˜¬í•´ ì¡ì§€ë§Œ ê²€ìƒ‰í•˜ëŠ” ê¸°ëŠ¥\t";
+			menu += "8: ì¶œíŒì‚¬ë¡œ ê²€ìƒ‰í•˜ëŠ” ê¸°ëŠ¥\n";
+			menu += "9: ê°€ê²©ìœ¼ë¡œ ê²€ìƒ‰ ê¸°ëŠ¥(íŒŒë¼ë©”í„°ë¡œ ì£¼ì–´ì§„ ê°€ê²©ë³´ë‹¤ ë‚®ì€ ë„ì„œ ì •ë³´ ê²€ìƒ‰)\t";
+			menu += "10:ì €ì¥ëœ ëª¨ë“  ë„ì„œì˜ ê¸ˆì•¡ í•©ê³„ë¥¼ êµ¬í•˜ëŠ” ê¸°ëŠ¥\n";
+			menu += "11:ì €ì¥ëœ ëª¨ë“  ë„ì„œì˜ ê¸ˆì•¡ í‰ê· ì„ êµ¬í•˜ëŠ” ê¸°ëŠ¥\t";
+			menu += "0:ëë‚´ê¸°";
 
 			System.out.println(menu);
 			int number = sc.nextInt();
@@ -37,12 +37,12 @@ public class BookTest {
 			case 0: 
 				break aaa;
 			case 1:
-//				bm.add(new Book("11", "ÀÚ¹Ù", "Alpha", "a.kr", 100, "aaaa"));
+//				bm.add(new Book("11", "ìë°”", "Alpha", "a.kr", 100, "aaaa"));
 //				bm.add(new Magazine("22", "C", "Bravo", "b.kr", 300, "bbbb", 2019, 7));
 //				bm.add(new Book("11", "C++", "Charlie", "c.kr", 200, "cccc"));
-//				bm.add(new Magazine("44", "ÀÚ¹Ù", "Delta", "d.kr", 50, "dddd", 2020, 2));
+//				bm.add(new Magazine("44", "ìë°”", "Delta", "d.kr", 50, "dddd", 2020, 2));
 				
-				System.out.println("¹øÈ£ ¼±ÅÃ (1:Book / 2:Magazine) : ");
+				System.out.println("ë²ˆí˜¸ ì„ íƒ (1:Book / 2:Magazine) : ");
 				int num = sc.nextInt();
 				
 				if(num < 0 || 2 < num)
@@ -83,16 +83,16 @@ public class BookTest {
 			case 2:
 				ArrayList<Book> list=mgr.getAllBook();
 				for(Book b : list) {
-					System.out.println(b);
+					if(b != null) System.out.println(b);
 				}
 				break;
 			case 3:
-				System.out.println("°Ë»öÇÒ isbn ÀÔ·Â : ");
+				System.out.println("ê²€ìƒ‰í•  isbn ì…ë ¥ : ");
 				String name1 = sc.next();				
 				System.out.println(mgr.searchBookByIsbn(name1));
 				break;
 			case 4:
-				System.out.println("°Ë»öÇÒ title ÀÔ·Â : ");
+				System.out.println("ê²€ìƒ‰í•  title ì…ë ¥ : ");
 				String name2 = sc.next();
 				ArrayList<Book> returnList=mgr.searchBookByTitle(name2);
 				for(Book b : returnList) System.out.println(b);
@@ -114,13 +114,13 @@ public class BookTest {
 				}
 				break;
 			case 8:
-				System.out.println("°Ë»öÇÒ publisher ÀÔ·Â : ");
+				System.out.println("ê²€ìƒ‰í•  publisher ì…ë ¥ : ");
 				String name3 = sc.next();
 				ArrayList<Book> returnList4=mgr.searchBookByPublish(name3);
 				for(Book b : returnList4)System.out.println(b);
 				break;
 			case 9:
-				System.out.println("°Ë»öÇÒ °¡°İ ÀÔ·Â : ");
+				System.out.println("ê²€ìƒ‰í•  ê°€ê²© ì…ë ¥ : ");
 				int num2 = sc.nextInt();
 				ArrayList<Book> returnList5=mgr.searchBookByPrice(num2);
 				for(Book b : returnList5)System.out.println(b);
@@ -132,6 +132,6 @@ public class BookTest {
 				System.out.println(mgr.getAvgPrice());
 				
 			}
-		}	
+		}
 	}
 }

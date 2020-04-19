@@ -12,59 +12,96 @@ public class BookMgrImpl implements BookMgr{
 	public static BookMgrImpl getInstance() {
 		return  mgr;
 	}
+	
+	
 	@Override
 	public void addBook(Book b) {
-		//
+		books.add(b);
 	}
 
 	@Override
 	public ArrayList<Book> getAllBook() {
-		return null;
+		return books;
 	}
 
 	@Override
 	public Book searchBookByIsbn(String isbn) {
-		return null;
+		Book book = null;
+		
+		for(Book b: books) {
+			if(b.getIsbn().equals(isbn)) book = b;
+		}
+		
+		return book;
 	}
 
 	@Override
 	public ArrayList<Book> searchBookByTitle(String title) {
+		ArrayList<Book> bs = new ArrayList<>();
+		for(Book b: books) {
+				if(b.getTitle().equals(title)) bs.add(b);
+				}
 		
-		return null;
+		return bs;
 	}
 
 	@Override
 	public ArrayList<Book> onlySearchBook() {
-		
-		return null;
+		ArrayList<Book> bs = new ArrayList<>();
+		for(Book b: books) {
+			if(!(b instanceof Magazine)) bs.add(b);
+		}
+		return bs;
 	}
 
 	@Override
 	public ArrayList<Book> onlySearchMagazin() {
-		return null;
+		ArrayList<Book> bs = new ArrayList<>();
+		for(Book b: books) {
+			if((b instanceof Magazine)) bs.add(b);
+		}
+		return bs;
 	}
 
 	@Override
 	public ArrayList<Book> magazineOfThisYearInfo(int year) {
-		return null;
+		ArrayList<Book> magazine = onlySearchMagazin();
+		ArrayList<Book> bs = new ArrayList<>();
+		for(Book b: magazine) {
+			if(((Magazine)b).getYear() == year) bs.add(b);
+		}
+		return bs;
 	}
 
 	@Override
 	public ArrayList<Book> searchBookByPublish(String publish) {
-		return null;
+		ArrayList<Book> bs = new ArrayList<>();
+		for(Book b: books) {
+			if(b.getPublisher().equals(publish)) bs.add(b);
+		}
+		return bs;
 	}
 
 	@Override
 	public ArrayList<Book> searchBookByPrice(int price) {
-		return null;
+		ArrayList<Book> bs = new ArrayList<>();
+		for(Book b: books) {
+			if(b.getPrice() <= price) bs.add(b);
+		}
+		return bs;
 	}
 
 	@Override
 	public int getTotalPrice() {
-		return 0;
+		int tot = 0;
+		for(Book b: books) {
+			tot += b.getPrice();
+		}
+		return tot;
 	}
 	@Override
-	public int getAvgPrice() {		
-		return 0;
+	public int getAvgPrice() {
+		int avg = getTotalPrice()/books.size();
+		return avg;
 	}
 }
