@@ -38,66 +38,52 @@ public class EmployeeService {
 	}
 	
 	public void addEmployee(Employee e) {	
-		map.put(e.getSsn(), e);
-		System.out.println(e.getName()+"님이 추가 되었습니다.");
+		if(map.containsKey(e.getSsn())) {
+			System.out.println(e.getName()+"이미 회원이십니다.");
+			return;}
+		else {
+			map.put(e.getSsn(), e);
+			System.out.println(e.getName()+"님이 추가 되었습니다.");
+		}
 	}
 	
 	
 	public void deleteEmployee(int ssn) {	
-		key = map.keySet();
-		it = key.iterator();
-		boolean check = false;
-		while(it.hasNext()) {
-			Integer next = it.next();
-			if(map.get(next).getSsn() == ssn) {
-				check = true;
-				System.out.println(map.get(next).getName()+"님이 삭제되었습니다.");
-				map.remove(next);
-				break;
-			}
-		}
-		if(!check) System.out.println(ssn+"은 존재하지 않는 번호 입니다.");
+		Employee emp = map.remove(ssn);
+		if (emp == null) System.out.println("삭제할 대상이 존재하지 않습니다.");
+		else System.out.println(emp.getName()+"님이 삭제되었습니다.");
 	}	
 	
 	
 	public void updateEmployee(Employee e, int ssn) {
-		key = map.keySet();
-		it = key.iterator();
-		boolean check = false;
-		
-		while(it.hasNext()) {
-			Integer next = it.next();
-			if(map.get(next).getSsn() == ssn) {
-				check = true;
-				System.out.println(map.get(next).getName()+"님의 정보가 수정되었습니다.");
-				map.replace(next, map.get(next), e);
-			}
+		if(map.containsKey(ssn)) {
+			map.put(ssn, e);
+			System.out.println(e.getName()+"님의 정보가 수정되었습니다.");
 		}
-		if(!check) System.out.println(ssn+"은 존재하지 않는 번호 입니다.");
+		else System.out.println("수정할 대상이 존재하지 않습니다.");
 	}	
 	
 	
 	public Employee findEmployee(int ssn) {
-		Employee e = null;
+		return map.get(ssn);
+	}	
+	
+	public ArrayList<Employee> findEmployee(double sal) {
+		ArrayList<Employee> es = new ArrayList<>();
+		
 		key = map.keySet();
 		it = key.iterator();
 		boolean check = false;
 		
 		while(it.hasNext()) {
 			Integer next = it.next();
-			if(map.get(next).getSsn() == ssn) {
+			if(map.get(next).getSalary() <= sal) {
 				check = true;
-				e =map.get(next);
+				es.add(map.get(next));
 			}
 		}
 		
-		if(!check) System.out.println(ssn+"은 존재하지 않는 번호 입니다.");
-		return e;
-	}	
-	
-	public ArrayList<Employee> findEmployee(double sal) {
-		
-		return null;
+		return es;
 	}	
 	
 }

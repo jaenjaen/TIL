@@ -20,7 +20,7 @@ public class EmployeeServiceTest {
 		Manager m3 =new Manager(333, "강하늘", new MyDate(1980, 3, 3), 20000.0, "교육부", 30);
 		
 		Engineer eg1 = new Engineer(444,"강제영", new MyDate(1995,3,4), 350000.0, "Java", 200.0);
-		Engineer eg2 =new Engineer(555, "임채은", new MyDate(1995,7,2), 350000.0, "Java", 200.0);
+		Engineer eg2 =new Engineer(555, "임채은", new MyDate(1995,7,2), 400000.0, "Java", 200.0);
 		
 		service.addEmployee(m1);
 		service.addEmployee(m2);		
@@ -42,7 +42,12 @@ public class EmployeeServiceTest {
 		service.getEmployee();
 		
 		System.out.println("======================== 4. findEmployee ================================== ");
-		ArrayList<Employee> retList=service.findEmployee(20000.0);
+		Employee e = service.findEmployee(111);
+		System.out.println(e);
+		
+		ArrayList<Employee> retList=service.findEmployee(35000.0);
+		for(Employee emp : retList) System.out.println(emp);
+		
 	}
 }
 
