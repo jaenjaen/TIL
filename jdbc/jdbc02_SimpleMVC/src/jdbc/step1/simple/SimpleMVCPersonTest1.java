@@ -15,13 +15,33 @@ import config.ServerInfo;
  * 3.preparedStatment설정
  * 4.쿼리문 실행
  * 5.close
+ * 고정적 반복 - 디비연결, 자원반납 - 공통적인 메소드로 처리 메소드마다 호출
+ * 변동적인 반복 - 
+ * 
+ * 비즈니스 로직가 모인곳ㅛ DAO(Database Access Object)
  */
-public class SimpleMVCPersonTest1 {
+public class SimpleMVCPersonTest1{
+	
+	public Connection getConn() throws SQLException {
+		Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
+		System.out.println("드라이버 연결");
+		return conn;
+	}
+	
+	public void closeAll(PreparedStatement ps,Connection conn) throws SQLException {
+		if(ps!=null) ps.close();
+		if(conn!=null) conn.close();
+	}
+	
+	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
+		if(rs!=null) rs.close();
+		if(ps!=null) ps.close();
+		if(conn!=null) conn.close();
+	}
 	
 	public void addPerson(int ssn,String name, String addr) throws SQLException {
 		//디비연결 preparedstatment 쿼리문수행, close
-		Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
-		
+		Connection conn = getConn();
 		String query = "INSERT INTO person(ssn, name, address) Values(?,?,?)";
 		PreparedStatement ps = conn.prepareStatement(query);
 		
@@ -32,14 +52,13 @@ public class SimpleMVCPersonTest1 {
 		ps.executeUpdate();
 		System.out.println(name+"님이 추가되었습니다.");
 		
-		ps.close();
-		conn.close();
+		closeAll(ps, conn);
 		
 	}
 	public void deletePerson(int ssn) throws SQLException {
 		//디비연결 preparedstatment 쿼리문수행, close
 		if(searchAPeroson(ssn)) {
-			Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
+			Connection conn = getConn();
 			
 			String query = "DELETE FROM person WHERE ssn=?";
 			PreparedStatement ps = conn.prepareStatement(query);
@@ -48,8 +67,7 @@ public class SimpleMVCPersonTest1 {
 			ps.executeUpdate();
 			System.out.println(ssn+"번 회원님이 삭제되었습니다.");
 			
-			ps.close();
-			conn.close();
+			closeAll(ps, conn);
 		}
 		else System.out.println(ssn+"님은 존재하지 않습니다.");
 		
@@ -59,7 +77,7 @@ public class SimpleMVCPersonTest1 {
 	public void updatePerson(int ssn, String name, String address) throws SQLException {
 		//디비연결 preparedstatment 쿼리문수행, close
 		if(searchAPeroson(ssn)) {
-			Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
+			Connection conn = getConn();
 			
 			String quary = "UPDATE person SET name=?,address=? WHERE ssn=?";
 			PreparedStatement ps = conn.prepareStatement(quary);
@@ -71,15 +89,14 @@ public class SimpleMVCPersonTest1 {
 			ps.executeUpdate();
 			System.out.println(name+"님의 정보가 수정되었습니다.");
 			
-			ps.close();
-			conn.close();
+			closeAll(ps, conn);
 			
 		}else System.out.println(ssn+"님은 존재하지 않습니다.");
 		
 	}
 	
 	public void searchAllPerson() throws SQLException {
-		Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
+		Connection conn = getConn();
 		
 		String quary = "Select ssn,name,address from person";
 		PreparedStatement ps = conn.prepareStatement(quary);
@@ -94,14 +111,13 @@ public class SimpleMVCPersonTest1 {
 			System.out.println(ssn+". "+name+"님의 주소는 "+address+"입니다.");
 		}
 		
-		ps.close();
-		conn.close();
+		closeAll(rs, ps, conn);
 	}
 	
 	public Boolean searchAPeroson(int ssn) throws SQLException {
 		Boolean p = false;
 		//디비연결 preparedstatment 쿼리문수행, close
-		Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
+		Connection conn = getConn();
 		
 		String query = "Select ssn, name, address From person WHERE ssn=?";
 		PreparedStatement ps = conn.prepareStatement(query);
@@ -118,8 +134,7 @@ public class SimpleMVCPersonTest1 {
 			p = true;
 		}
 		
-		ps.close();
-		conn.close();
+		closeAll(rs, ps, conn);
 		return p;
 	}
 	public static void main(String[] args) {
