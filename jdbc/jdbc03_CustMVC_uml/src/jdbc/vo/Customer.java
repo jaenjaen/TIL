@@ -7,9 +7,6 @@ public class Customer {
 	private String address;
 	
 	public Customer() {}
-	
-	
-	
 	public Customer(String id, String pass, String name, String address) {
 		super();
 		this.id = id;
@@ -17,7 +14,6 @@ public class Customer {
 		this.name = name;
 		this.address = address;
 	}
-
 
 	public String getId() {
 		return id;
