@@ -8,343 +8,309 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import broker.twotier.excetion.DuplicateSSNException;
-import broker.twotier.excetion.InvaildTransactionException;
-import broker.twotier.excetion.RecordNotFoundException;
+import broker.twotier.exception.DuplicateSSNException;
+import broker.twotier.exception.InvalidTransactionException;
+import broker.twotier.exception.RecordNotFoundException;
 import broker.twotier.vo.CustomerRec;
-import broker.twotier.vo.ShareRec;
+import broker.twotier.vo.SharesRec;
 import broker.twotier.vo.StockRec;
 import config.ServerInfo;
-
-//DuplicateSSNException - 중복
-//RecodeNotFoundException - recode not found (안갖고있은데 팔때도 포함)
-//InvaildTransactionException - 100개 가지고 있는데 150개 팔때
 
 public class Database implements DatabaseTemplate{
 	
 	public Database(String serverIp) throws ClassNotFoundException{
 		Class.forName(ServerInfo.DRIVER_NAME);
-		System.out.println("드라이버 로딩 성공...");
+		System.out.println("드라이버 로딩 성공....");
 	}
-
-	//공통 로직
+	//공통적인 로직....
 	@Override
-	public Connection getConnet() throws SQLException {
-		Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
+	public Connection getConnect() throws SQLException {
+		Connection conn =DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
+		System.out.println("Database Connection......");
 		return conn;
 	}
-
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
-		if(ps != null) ps.close();
-		if(conn != null) conn.close();
+		if(ps!=null) ps.close();
+		if(conn!=null) conn.close();		
 	}
-
 	@Override
 	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-		if(rs != null) rs.close();
-		if(ps != null) ps.close();
-		if(conn != null) conn.close();
+		if(rs!=null) rs.close();
+		closeAll(ps, conn);	
 	}
 	
-	public boolean isExist(String ssn, Connection conn) throws SQLException{
-		//query문 나오기 전에 존재 유무 확인
-		String sql = "Select ssn From Customer WHere ssn=?";
+	public boolean isExist(String ssn, Connection conn)throws SQLException {
+		//있는지 없는지 존재유무 확인...
+		
+		String sql ="SELECT ssn FROM customer WHERE ssn=?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
-		ps.setString(1, ssn);
+		ps.setString(1,ssn);
 		ResultSet rs = ps.executeQuery();
 		return rs.next();
-	}
+	}	
 	
-	//원래 오류는 던지는데 closeall이 무조건 진행되어야되서 finally써야함
 	@Override
 	public void addCustomer(CustomerRec cust) throws SQLException, DuplicateSSNException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		
 		try {
-			conn = getConnet();
+			conn = getConnect();
 			
-			if(!isExist(cust.getSsn(),conn)) {
-				String query = "INSERT INTO customer(ssn,cust_name,address) VALUES (?,?,?)";
+			if(!isExist(cust.getSsn(), conn)) { //ssn이 없는거야...
+				String query = "INSERT INTO customer(ssn, cust_name, address) VALUES(?,?,?)";
 				ps = conn.prepareStatement(query);
-				
+			
 				ps.setString(1, cust.getSsn());
 				ps.setString(2, cust.getName());
 				ps.setString(3, cust.getAddress());
-				
-				System.out.println(ps.executeUpdate()+"명 Insert OK .... addCustomer()....");
-			}else {
-				throw new DuplicateSSNException(cust.getName()+"님은 이미 회원입니다.");
-			}
 			
-		}finally{closeAll(ps, conn);}
+				System.out.println(ps.executeUpdate()+" 명 INSERT OK....addCustomer()...");
+			}else { //ssn이 있는거야...
+				throw new DuplicateSSNException(cust.getName()+" 님은 이미 회원이십니다...");
+			}			
+			
+		}finally {
+			closeAll(ps, conn);
+		}
 	}
 
 	@Override
-	public void deleteCustomer(String ssn) throws SQLException, RecordNotFoundException {
+	public void deleteCustomer(String ssn) throws SQLException,RecordNotFoundException {
 		Connection conn = null;
-		PreparedStatement ps = null;
-		
-		try {
-			conn = getConnet();
-			
-			if(isExist(ssn, conn)) {
-				String query = "DELETE FROM customer WHERE ssn=?";
-				ps = conn.prepareStatement(query);
-				
-				ps.setString(1, ssn);
-				
-				System.out.println(ps.executeUpdate()+"명이 삭제되었습니다....deleteCustomer()...");
-			} else {
-				throw new RecordNotFoundException("존재하지 않는 ssn입니다.");
-			}
-		}finally {closeAll(ps, conn);}
+		 PreparedStatement ps = null;		 
+		 try{
+			 conn = getConnect();
+			 if(isExist(ssn, conn)){
+				 String query = "DELETE FROM customer WHERE ssn=?";			
+				 ps = conn.prepareStatement(query);
+				 ps.setString(1,ssn);			
+				 System.out.println(ps.executeUpdate()+"명 delete success...deleteCustomer()");
+			 }else{
+				 throw new RecordNotFoundException("삭제할 사람 없어여..");
+			 }
+		 }finally{
+			 closeAll(ps, conn);			 
+		 }
 		
 	}
 
 	@Override
-	public void updateCustomer(CustomerRec cust) throws SQLException, RecordNotFoundException {
+	public void updateCustomer(CustomerRec cust) throws SQLException,RecordNotFoundException  {
 		Connection conn = null;
-		PreparedStatement ps = null;
-		
-		try {
-			conn = getConnet();
-			
-			if(isExist(cust.getSsn(), conn)) {
-				String query = "UPDATE customer SET ssn=?, cust_name=?, address=? WHERE ssn=?";
-				ps = conn.prepareStatement(query);
-				
-				ps.setString(1, cust.getSsn());
-				ps.setString(2, cust.getName());
-				ps.setString(3, cust.getAddress());
-				ps.setString(4, cust.getSsn());
-				
-				System.out.println(ps.executeUpdate()+"명의 정보가 수정되었습니다....updateCustomer()...");
-				
-			}else {
-				throw new RecordNotFoundException(cust.getName()+"님은 존재하지 않는 회원입니다.");
-			}
-		}finally {closeAll(ps, conn);}
+		 PreparedStatement ps = null;		
+		 try{
+			 conn = getConnect();
+			 String query ="UPDATE customer SET cust_name=?, address=? WHERE ssn=?";
+			 ps = conn.prepareStatement(query);
+			 ps.setString(1, cust.getName());
+			 ps.setString(2, cust.getAddress());
+			 ps.setString(3, cust.getSsn());
+			 int row = ps.executeUpdate();
+			 
+			 if(row==1) System.out.println(row+" 명 update success...");
+			 else throw new RecordNotFoundException("수정할 대상이 없어여..");
+		 }finally{
+			 closeAll(ps, conn);
+		 }
 	}
 
 	@Override
-	public Vector<ShareRec> getPortolio(String ssn) throws SQLException {
+	public Vector<SharesRec> getPortfolio(String ssn) throws SQLException {
+		 Connection conn = null;
+		 PreparedStatement ps = null;	
+		 ResultSet rs = null;
+		 Vector<SharesRec> v = new Vector<SharesRec>();
+		 try{
+			 conn = getConnect();
+			 String query = "SELECT ssn, symbol, quantity FROM shares WHERE ssn=?";
+			 ps = conn.prepareStatement(query);
+			 ps.setString(1,ssn);
+			 rs = ps.executeQuery();
+			 while(rs.next()){
+				 v.add(new SharesRec(ssn, 
+						 			rs.getString("symbol"), 
+						 			rs.getInt("quantity")));
+			 }			 
+		 }finally{
+			 closeAll(rs, ps, conn);
+		 }
+		 return v; 
+	}
+
+	@Override
+	public CustomerRec getCustomer(String ssn) throws SQLException {
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement ps = null;	
 		ResultSet rs = null;
-		Vector<ShareRec> tmp = new Vector<>();
-		ShareRec sr =null;
-		
+		CustomerRec cust = null;
 		try {
-			conn = getConnet();
-			String query = "Select s.* FROM shares s, customer c WHERE s.ssn = c.ssn AND c.ssn = ?";
-			ps = conn.prepareStatement(query);
-			
-			ps.setString(1, ssn);
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				sr = new ShareRec(rs.getString("ssn"),
-								  rs.getString("symbol"),
-								  rs.getInt("quantity"));
-				tmp.add(sr);
-			}
-			System.out.println(tmp.size()+"개의 포트폴리오가 검색되었습니다....getPortolio()...");
-		}finally {closeAll(rs,ps,conn);}
-		
-		return tmp;
-	}
-
-	@Override
-	public CustomerRec getCustonmer(String ssn) throws SQLException, InvaildTransactionException {
-		CustomerRec tmpCust = null;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnet();
+			conn = getConnect();
 			String query = "SELECT * FROM customer WHERE ssn=?";
 			ps = conn.prepareStatement(query);
 			
 			ps.setString(1, ssn);
-			rs = ps.executeQuery();
-			
+			rs=ps.executeQuery();
 			if(rs.next()) {
-				tmpCust = new CustomerRec(rs.getString("ssn"),
-										  rs.getString("cust_name"),
-										  rs.getString("address"));
-				System.out.println(tmpCust.getName()+"님의 정보가 검색되었습니다 ....getCustomer()...");
-			}else {
-				throw new InvaildTransactionException("존재하지 않는 회원입니다.");
-			}
-			
-		}finally {closeAll(rs,ps,conn);}
-		
-		return tmpCust;
-	}
-
-	@Override
-	public ArrayList<CustomerRec> getAllCustomers() throws SQLException, RecordNotFoundException {
-		ArrayList<CustomerRec> tmp = new ArrayList<>();
-		CustomerRec tmpC = null;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnet();
-			String query = "Select * from customer";
-			ps = conn.prepareStatement(query);
-			
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				tmpC = new CustomerRec(rs.getString("ssn"),
-									   rs.getString("cust_name"),
+				cust = new CustomerRec(
+									   ssn, 
+									   rs.getString("cust_name"), 
 									   rs.getString("address"));
-				tmp.add(tmpC);
-			}
-			
-			if(tmp.isEmpty()) throw new RecordNotFoundException("회원이 존재하지 않습니다.");
-			else System.out.println("정보가 검색되었습니다 ....getAllCustomers()...");
-			
-		}finally {closeAll(rs, ps, conn);}
-		return tmp;
-	}
-
-	@Override
-	public ArrayList<StockRec> getAllPortfolio(String ssn) throws SQLException, RecordNotFoundException {
-		ArrayList<StockRec> tmp = new ArrayList<>();
-		StockRec tmpS = null;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = getConnet();
-			String query = "SELECT t.* FROM stock t, shares h, customer c "
-						+ "WHERE h.ssn = c.ssn AND t.symbol = h.symbol;";
-			ps = conn.prepareStatement(query);
-			
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				tmpS = new StockRec(rs.getString("symbol"),
-									 rs.getFloat("price"));
-				
-				tmp.add(tmpS);
-			}
-			
-			if(tmp.isEmpty()) throw new RecordNotFoundException("주식이 존재하지 않습니다.");
-			else System.out.println("정보가 검색되었습니다 ....getAllPortfolio()...");
-			
-		}finally {closeAll(rs, ps, conn);}
-		
-		return tmp;
-	}
-
-	@Override
-	public void buyShares(String ssn, String symbol, int quantity) throws SQLException, RecordNotFoundException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		String query ="";
-		
-		try {
-			conn = getConnet();
-			if(isExist(ssn, conn)) {
-				int tmp = getQuantity(ssn, conn);
-				
-				if(!isZero(ssn, conn)) {
-					query = "INSERT INTO shares(ssn,symbol,quantity) VALUES(?,?,?)";
-					ps = conn.prepareStatement(query);
-					
-					ps.setString(1, ssn);
-					ps.setString(2, symbol);
-					ps.setInt(3, quantity+tmp);
-					
-					System.out.println(ps.executeUpdate()+"첫 구매 성공! ....buyShares()...");
-				}
-				else {
-					query = "UPDATE shares SET ssn=?, symbol=?, quantity=? WHERE ssn=?";
-					ps = conn.prepareStatement(query);
-					ps.setString(1, ssn);
-					ps.setString(2, symbol);
-					ps.setInt(3, quantity+tmp);
-					ps.setString(4, ssn);
-					
-					System.out.println(ps.executeUpdate()+"구매 성공! ....buyShares()...");
-				}
-			}else throw new RecordNotFoundException("존재하지 않는 회원입니다.");
-			
-		}finally {closeAll(ps, conn);}
-	}
-
-	@Override
-	public void sellShares(String ssn, String symbol, int quantity) throws SQLException, RecordNotFoundException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		String query ="";
-		
-		try {
-			conn = getConnet();
-			if(isExist(ssn, conn)) {
-				int tmp = getQuantity(ssn, conn);
-				
-				if(!isZero(ssn, conn)) {
-					query = "INSERT INTO shares(ssn,symbol,quantity) VALUES(?,?,?)";
-					ps = conn.prepareStatement(query);
-					
-					ps.setString(1, ssn);
-					ps.setString(2, symbol);
-					ps.setInt(3, quantity+tmp);
-					
-					System.out.println(ps.executeUpdate()+"첫 구매 성공! ....buyShares()...");
-				}
-				else {
-					query = "UPDATE shares SET ssn=?, symbol=?, quantity=? WHERE ssn=?";
-					ps = conn.prepareStatement(query);
-					ps.setString(1, ssn);
-					ps.setString(2, symbol);
-					ps.setInt(3, quantity+tmp);
-					ps.setString(4, ssn);
-					
-					System.out.println(ps.executeUpdate()+"구매 성공! ....buyShares()...");
-				}
-			}else throw new RecordNotFoundException("존재하지 않는 회원입니다.");
-			
-		}finally {closeAll(ps, conn);}
-	}
-	
-	public int getQuantity(String ssn, Connection conn) throws SQLException{
-		int tmp = 0;
-		ResultSet rs = null;
-		String query = "SELECT h.quantity FROM shares h, customer c "
-				+ "WHERE c.ssn =? AND h.ssn = c.ssn";
-		PreparedStatement ps = conn.prepareStatement(query);
-	
-		ps.setString(1, ssn);
-		rs = ps.executeQuery();
-		
-		if(rs.next()) {
-			tmp = rs.getInt("h.quantity");
+			}//if
+			cust.setPortfolio(getPortfolio(ssn));
+		}finally {
+			closeAll(rs, ps, conn);
 		}
-		return tmp;
-	}
-	
-	public Boolean isZero(String ssn, Connection conn) throws SQLException{
-		String query = "SELECT quantity FROM shares WHERE ssn =?";
-		PreparedStatement ps = conn.prepareStatement(query);
-		
-		ps.setString(1, ssn);
-		
-		ResultSet rs = ps.executeQuery();
-		
-		return rs.next();
+		return cust;
 	}
 
+	@Override
+	public ArrayList<CustomerRec> getAllCustomers() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;	
+		ResultSet rs = null;
+		ArrayList<CustomerRec> list = new ArrayList<>();
+		try {
+			conn = getConnect();
+			String query=  "SELECT * FROM customer";
+			
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new CustomerRec(
+						rs.getString(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						getPortfolio(rs.getString(1))));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<StockRec> getAllStocks() throws SQLException {
+		 Connection conn = null;
+		 PreparedStatement ps = null;	
+		 ResultSet rs = null;
+		 ArrayList<StockRec> list = new ArrayList<StockRec>();
+		 try{
+			 conn = getConnect();
+			 String query = "SELECT * FROM stock";
+			 ps = conn.prepareStatement(query);
+			 rs = ps.executeQuery();
+			 while(rs.next()){
+				 list.add(new StockRec(rs.getString(1), 
+						 			   rs.getFloat(2)));
+			 }
+		 }finally{
+			 closeAll(rs, ps, conn);
+		 }
+		 return list;
+	}
+	/*
+	 누가 어떤 주식을 몇개 살것인가...
+	 지금 주식이 몇개 있는가를 먼저 알아봐야 한다...이미 가지고 있냐/없냐에 해당하는 쿼리문이 된다...0/N
+	 50 , 100 --- update
+	 0  , 100 --- insert
+	 */
+	@Override
+	public void buyShares(String ssn, String symbol, int quantity) throws SQLException {
+		 Connection conn = null;
+		 PreparedStatement ps = null;	
+		 ResultSet rs = null;
+		 try {
+			 conn=  getConnect();
+			 String query = "SELECT quantity FROM shares WHERE ssn=? AND symbol=?";
+			 
+			 ps = conn.prepareStatement(query);
+			 ps.setString(1, ssn);
+			 ps.setString(2, symbol);
+			 rs = ps.executeQuery();
+			 if(rs.next()) { 
+				 int q = rs.getInt(1); //50..현재 가지고 있는 주식의 수량
+				 int newQuantity = q + quantity; //50 + 100=150...UPDATE
+				 String query1 = "UPDATE shares SET quantity=? WHERE ssn=? AND symbol=?";
+				 
+				 ps = conn.prepareStatement(query1);
+				 ps.setInt(1, newQuantity);
+				 ps.setString(2, ssn);
+				 ps.setString(3, symbol);
+				 
+				 System.out.println(ps.executeUpdate()+" row buyShares()....OK");
+			 }else { //주식이 없다...INSERT
+				 String query2 ="INSERT INTO shares (ssn, symbol, quantity) VALUES(?,?,?)";
+				 ps = conn.prepareStatement(query2);
+				 ps.setString(1, ssn);
+				 ps.setString(2, symbol);
+				 ps.setInt(3, quantity);
+				 System.out.println(ps.executeUpdate()+" row buyShares()....insert OK");
+			 }
+			 
+		 }finally {
+			 closeAll(rs, ps, conn);
+		 }		
+	}
+/*
+누가 어떤 주식을 몇개 팔것이가....현재 몇개를 가지고 있는가....q
+ 1) 100개를 현재 가지고 있다 ---- 50 ----UPDATE
+ 2) 100개를 현재 가지고 있다 ---- 100 ---DELETE
+ 3) 100개를 현재 가지고 있다 ---- 200 --- 펑
+ 4) 주식이 없을때      ---- 펑
+ */
+	@Override
+	public void sellShares(String ssn, String symbol, int quantity) throws SQLException,InvalidTransactionException,RecordNotFoundException {
+		 Connection conn = null;
+		 PreparedStatement ps = null;	
+		 ResultSet rs = null;
+		 try {
+			 conn = getConnect();
+			 if(!isExist(ssn, conn)) {
+				 throw new RecordNotFoundException("주식을 팔려는 사람이 없어요");
+			 }else {
+				String query = "SELECT quantity FROM shares WHERE ssn=? AND symbol=?"; 
+				ps = conn.prepareStatement(query);
+				ps.setString(1,ssn);
+				ps.setString(2,symbol);
+				rs = ps.executeQuery();
+				
+				rs.next();//일단 커서를 한단계 밑으로 내려서 수량을 받아올 준비를 한다.
+				
+				int q = rs.getInt(1); // 100개 현재 가지고 있다.
+				int newQuantity = q - quantity; //팔고 남은 수량...
+				
+				if(q==quantity) { //delete
+					String query1 = "DELETE  FROM shares WHERE ssn=? AND symbol=?"; 
+					ps = conn.prepareStatement(query1);
+					
+					ps.setString(1,ssn);
+					ps.setString(2,symbol);
+					System.out.println(ps.executeUpdate()+" row SHARES DELETE...sellShares()..");							
+				}else if(q>quantity) { //update
+					String query2 = "UPDATE shares SET quantity=? WHERE ssn=? AND symbol=?";
+					ps = conn.prepareStatement(query2);
+					ps.setInt(1, newQuantity);
+					ps.setString(2,ssn);
+					ps.setString(3,symbol);
+					System.out.println(ps.executeUpdate()+ "row SHARES update...sellShares()..");
+				}else { //q<quantity...펑
+					throw new InvalidTransactionException("팔려는 주식의 수량이 너무 많아요~~~^^;");
+				}
+				
+			 }
+		 }finally {
+			 closeAll(rs, ps, conn);
+		 }		
+	}
 }
+
+
+
+
+
+
+
+
+

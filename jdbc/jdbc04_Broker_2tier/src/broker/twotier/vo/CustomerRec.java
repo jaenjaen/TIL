@@ -11,7 +11,7 @@ public class CustomerRec {
 	private String ssn;
 	private String name; // cust_name
 	private String address;
-	private Vector<ShareRec> portfolio;
+	private Vector<SharesRec> portfolio;
 	
 	public CustomerRec() {
 		super();
@@ -21,7 +21,7 @@ public class CustomerRec {
 		this(ssn,name,address,null);
 	}
 	
-	public CustomerRec(String ssn, String name, String address, Vector<ShareRec> portfolio) {
+	public CustomerRec(String ssn, String name, String address, Vector<SharesRec> portfolio) {
 		super();
 		this.ssn = ssn;
 		this.name = name;
@@ -41,9 +41,9 @@ public class CustomerRec {
 
 	public void setAddress(String address) {this.address = address;}
 
-	public Vector<ShareRec> getPortfolio() {return portfolio;}
+	public Vector<SharesRec> getPortfolio() {return portfolio;}
 
-	public void setPortfolio(Vector<ShareRec> portfolio) {this.portfolio = portfolio;}
+	public void setPortfolio(Vector<SharesRec> portfolio) {this.portfolio = portfolio;}
 
 	@Override
 	public String toString() {
