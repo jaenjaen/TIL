@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<table border="2" width="40%">
+		<caption> table 제목 </caption>
+		
+		<colgroup>
+			<!--  span n칸에 적용하겠다는 뜻 -->
+			<col span="2" style="background-color:red"/>
+			<col style="background-color:blue">
+		</colgroup>
+		
+		<thead style="background-color:magenta">
+			<tr>
+				<th>no</th>
+				<th>name</th>
+				<th>address</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="3">1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			
+			<tr>
+				<td>2</td>
+				<td>나나나</td>
+			</tr>
+			
+			<tr>
+				<td>3</td>
+				<td>다다다</td>
+			</tr>
+		</tbody>
+		<tfoot style="background-color:yellow">
+			<tr>
+				<td>111</td>
+				<td>222</td>
+				<td>333</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+
+</html>
