@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Member Form</title>
+
+<style>
+	h1{
+		color: orange;
+		text-shadow: 4px 0px 1.5px black;
+		text-align:center;
+	}
+	
+	hr{
+		border: solid 2px orange;
+	}
+	
+	form{
+		text-aline:center;
+	}
+	
+	fieldset{
+		border: 1px solid gray;
+		margin-left:5%;
+		margin-right:5%;
+	}
+	
+	legend{
+		color:green;
+		font-size: larger;
+		font-weight: bold;
+	}
+	input{
+		border:1.5px solid red;
+		width: 40%;
+		float: right;
+		margin-right:20%;
+		margin-left:5px;
+	}
+	
+	p{
+		text-align: right;
+		margin-block-start: 0px;
+	    margin-block-end: 0px;
+	}
+	
+	select{
+		border:1.5px solid gray;
+		width: 40%;
+		float:right;
+		margin-right:20.2%;
+	}
+	footer{
+		float:right;
+	}
+</style>
+
+
+</head>
+
+<body>
+	<H1>Become a Member</H1>
+	<hr>
+	
+	<form action="#">
+		<fieldset>
+			<legend>Registration Information</legend>
+			<p>E-mail: <input type="email"></p>
+			<p>Password: <input type="password" placeholder="At least 6 letters or numbers"></p>
+			<p>Verify Password: <input type="password"></p>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Member Information</legend>
+			<p>First Name: <input type="text"></p>
+			<p>Last Name: <input type="text"></p>
+			<p>Address: <input type="text" style="border:1.5px solid gray"></p>
+			<p>City: <input type="text"></p>
+			<p>State: <input type="text" placeholder="2-character code"></p>
+			<p>ZIP Code: <input type="text" placeholder="5 or 9 digits"></p>
+			<p>Phone Number: <input type="tel" style="border:1.5px solid gray" placeholder="999-999-9999"></p>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Membership Information</legend>
+			<p>Membership Type: 
+				<select name="member">
+					<option value="junior">Junior</option>
+					<option value="senior">Senior</option>
+					<option value="vip">VIP</option>
+					<option value="vvip">VVIP</option>
+				</select>
+			</p> 
+			<p>Starting Date: <input type="date" ></p>
+			<p>Tickets For Guests: <input type="text"></p>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Submit Your Membership</legend>
+			
+			<input type="reset" value="Reset Fields" style="border:1.5px solid gray; width:20%; margin-right:5px; margin-left:0;'">
+			<input type="submit" value="Submit" style="border:1.5px solid gray; width:20%; margin-right:5px;">
+			
+		</fieldset>
+	
+	</form>	
+	<hr>
+	
+	<footer> © CopyRight 2020 Encore Academy.</footer>
+
+</body>
+</html>
