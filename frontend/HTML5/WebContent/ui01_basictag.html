@@ -1,0 +1,71 @@
+<!--
+ 1. html 파일 작성
+ 2. 작성한 파일을 tomcat_home<webapps<context Root(HTML5)<ui01_basictag.html 
+ 3. server가동
+ 4. 요청
+ 5. 요청결과로 바디 태그 만 출력-->
+ 
+ <!--   검색엔진 최적화
+ 	 	컨텐츠가 사용자에게 검색되었을 때, 상위에 노출되도록 할 수 있어야 함.
+ 	 	구글검색 엔진 최적화 가이드를 한번 쯤 찾아보는 것을 추천
+ 	 	1. Title 태그에 검색어가 있는 경우  (우선)
+ 	 	       자신의 사이트를 대표하는 검색어를 TITLE태그에 잘 달아놔야 함
+ 	 	2. META TAG를 사용 것이 좋다.
+ 	 		짧은 문장이나 짧은 단락으로 표시하는 것이 좋음
+ 	 	3. URL 구조 개선 (URL:특별한 컨텐츠에 도달할 수 있는 식별자)
+ 	 		URL 주소를 알아보기 좋은 형태로 만들면 검색엔진 최적화
+ 	 		정보를 직관적으로 파학하는 데도 도움이 된다.-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>FIRST HTML!</title>
+	<style>
+		body{
+			background-color:black;
+			text-align:center;
+		}
+		h{
+			color:white;
+		}
+		ol,ul{
+			color:white;
+			display:inline-block;
+		}
+		li{
+		
+		}
+	</style>
+	
+	<script>
+	/* java script 함수 정의*/
+		function push(){
+			alert("alert예제..")
+		}
+	</script>
+</head>
+<body>
+	<h1><font color="pink">HELL..o.. HTML5</font></h1>
+	<h2><font color="blue">HELL..o.. HTML5</font></h2>
+	<h3><font color="black">HELL..o.. HTML5</font></h3>
+	<h4><font color="yellow">HELL..o.. HTML5</font></h4>
+	<h5><font color="red">HELL..o.. HTML5</font></h5>	
+	<ol>
+		<li><a href="https://www.daum.net/">JAVA</a></li>
+		<li>HTML</li>
+		<li>JDBC</li>
+		<li>CSS3</li>
+	</ol>
+	<hr>
+	<button onclick="push()">HI!</button>
+	<hr>
+	<ul>
+		<li>JAVA</li>
+		<li>HTML</li>
+		<li>JDBC</li>
+		<li>CSS3</li>
+	</ul>
+	
+</body>
+</html>
