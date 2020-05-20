@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/encoretheater.css">
+<title>Encore Theater</title>
+</head>
+
+<body>
+	<div class="container">
+		<h1 id='cinema'>Encore theater</h1>
+		<h1 id= 'title'>쿵푸팬더 예매</h1>
+		<img src="img/panda.jpg">
+		
+		<form>
+			<label>상영관 </label>
+			<select>
+				<option value='cgv'>CGV</option>
+				<option value='lotte'>롯데시네마</option>
+				<option value='megabox'>메가박스</option>
+			</select>
+			
+			<label>날짜선택 </label>
+			<input type="date">
+			
+			<fieldset>
+				<legend>시간선택</legend>
+				<input type="radio">08:30
+				<input type="radio">11:00
+				<input type="radio">14:20
+				<input type="radio">17:25
+				<input type="radio">20:10
+				<input type="radio">23:05
+			</fieldset>
+			
+			<label>요금 </label>
+			<label class='price'>\9,000</label>
+			<label class='price'>\5,000</label>
+			<br>
+			
+			<label>인원 </label>
+			<input type="text" value='0'><br>
+			
+			<label>금액 </label>
+			<input type="text" value='0'><br>
+			
+			<input type="checkbox" checked="checked" disabled="disabled"><label>옵션</label>
+			<fieldset>
+			<input type="checkbox" value='popcorn'>팝콘
+			<input type="checkbox" value='coke'>콜라
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

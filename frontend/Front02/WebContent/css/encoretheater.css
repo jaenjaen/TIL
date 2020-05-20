@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.container{
+	width:500px;
+	margin:0 auto;
+}
+
+#cinema{
+	font-family: serif;
+}
+
+#title{
+	font-weight:lighter;
+}
+
+img{
+	width:80%;
+}
+
+fieldset {
+	border: 1px solid gray;
+}
+
+.price{
+	text-decoration: underline;
+	margin-right:3%;
+}
