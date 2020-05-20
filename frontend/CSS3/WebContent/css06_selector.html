@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!--src 속성값 에서 확장자만 골라내고 싶을 때  
+	속성값이 뭐가 들어가 있는지, 시작된값 끝나는 값 확인
+	끝나는 값 $
+	포함 *
+	시작 ^ -->
+<style>
+ 	img[src$=png]{
+ 	border: 3px solid red;
+ 	}
+ 	
+ 	img[src*=ux]{
+ 	border: 3px dotted gray;
+ 	}
+ 	
+ 	img[src^=node]{
+ 	border: 3px solid blue;
+ 	}
+ 
+</style>
+</head>
+
+<body>
+	<img src="img/jajq.png" width="200" height="250">
+	<img src="img/node.jpg" width="200" height="250">
+	<img src="img/ux.gif" width="200" height="250">
+</body>
+</html>
