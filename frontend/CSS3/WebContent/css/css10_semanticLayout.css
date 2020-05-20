@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+header{
+	width:600px;
+	margin: 0 auto;
+	background-color: #9D9CFF;
+}
+
+header>h1{
+	color:white;
+}
+
+nav{
+	width:600px;
+	margin: 0 auto;
+	background-color: #8FC8FF;
+}
+
+nav>h1{
+	color:white;
+	font-size: 16px;
+}
+
+#wrap{
+	width:600px;
+	margin: 0 auto;
+}
+
+aside{
+	width:30%;
+	float:left;
+	margin-right:5%;
+	background-color: #FFB8E5;
+}
+
+section{
+	width:65%;
+	float:right;
+	background-color: #FFAEAB;
+}
+
+p{
+	width:90%;
+}
+/*clear:both == #wrap에 overflow:hidden 같은 기능*/
+footer{
+	clear: both;
+	width: 600px;
+	text-align: center;
+	margin: 0 auto;
+	background-color:#9D9CFF;
+}
