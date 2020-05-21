@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body{
+	margin: 0;
+}
+.header{
+	text-align:center;
+	background-color:gray;
+	padding: 3%;
+}
+
+h1,p,h2{
+	font-family: serif;
+}
+
+.nav{
+	background-color:black;
+	padding: 1%
+}
+
+a:-webkit-any-link {
+    color: white;
+    text-decoration: none;
+    font-family: serif;
+    font-weight: strong;
+}
+
+.column{
+	margin: 2%;
+	width: 25%;
+	float:left;
+	
+}
+
+.footer{
+	clear: both;
+	width:25%;
+	background-color: gray;
+	text-align: center;
+	padding: 2%;
+}

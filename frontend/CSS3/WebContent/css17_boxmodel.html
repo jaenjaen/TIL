@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>boxmodel</title>
+<style>
+	div{
+		border: 1px solid pink;
+		width: 300px;
+		height: 100px;
+	}
+	.div2{
+		padding: 50px;
+		/* box-sizing: border-box; */
+		box-sizing: content-box;
+	}
+</style>
+</head>
+<body>
+	<div class="div1">
+		the div is smaller (width 300px height 100px)
+	</div>
+	
+	<br>
+	
+	<div class="div2">
+		the div is bigger (width 300px height 100px)
+	</div>
+</body>
+</html>
