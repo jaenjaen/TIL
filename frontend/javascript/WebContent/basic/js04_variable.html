@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수</title>
+<script type="text/javascript">
+/*
+	(1)
+	var name='James'; //전역변수
+	
+	function showName(){
+		var name="Gosling"; //지역변수
+		console.log(name);
+	};
+	console.log(name);
+	showName(); */
+	
+	doSomthing();
+	function doSomthing() { //선언적 함수 선언
+		alert("정의되어있지 않음"+some);//2
+		var some = "Gday Mate!!"; //1
+		alert("정의되어있지 않음"+some);//3
+	}
+	
+	/*선언적 함수는 익명함수와 다르게 선언적 함수를 먼저 로딩해서 읽게 됨
+	20라인을 만나는 순간 변수의 최상단으로 끌여올림 (hoisting)
+	하지만 값을 제외하고 선언부만 끌어올린다.2233
+	숫자는 실행순서*/
+	
+</script>
+</head>
+
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zip에보내줘</title>
+<script type="text/javascript">
+	window.onload = function(){ /* html 문서에 포함된 모든 콘텐츠가 로드된 후에 실행되는 함수이며
+								      동일한 문서에서는 하나만 존재
+								   onload보다 유연하고 여러개 쓸 수 있는 함수 -> jquery의 ready*/
+	var list= '';//Data type이 동적으로 할당
+	/* alert(typeof list); */
+	
+	//복합연산자 사용
+	list += '<ul>';
+	list += '<li>Hello</li>';
+	list += '<li>javascript</li>';
+	list += '<ul>';
+	
+	//li변수 안에 있는 내용을 웹 브라우저에 출력 ->body태그 아래에 붙임
+	document.body.innerHTML = list ;
+	}
+</script>
+</head>
+<body>
+	<h2>onload</h2>
+	
+</body>
+</html>
