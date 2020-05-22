@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- Student 생성자 객체 선언
+	 이름, 자바score, 파이썬score, html5 score
+	 함수1 (점수 총합)
+	 함수2 (점수 평균)
+	 함수3 (정보 출력)
+	 
+	 이름	자바	파이썬  HTML5  총점  평균
+	 제임스 70  80   90   150 80
+	 
+	 이때 학생은 총 3명 출력은 body-->
+	 
+
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>생성자 함수 이용한 객체 생성</title>
+<script type="text/javascript">
+	function Student(sname, java, python,html) { //생성자형 객체는 함수와 구분하기 위해서 대문자로 사용
+		//this.속성
+		this.sname = sname;
+		this.java = java;
+		this.python = python;
+		this. html = html;
+		
+		//this.메소드
+		this.sum = function() {
+			return java+python+html;
+		}
+		
+		this.avg = function() {
+			return this.sum()/3;
+		}
+		
+		/*es6
+		  1) `(grave Accent) : 태그와 데이터 사이에 연산 없이 이어줌
+		  2) arrow function(나중에 vue할때)
+		  3) var 대신  let(지역변수),const(상수) 사용
+		*/
+		
+		this.print = function() {
+			//메소드가 하는 일 정의
+			document.write('<tr>');
+			document.write('<td>'+this.sname+'</td>');
+			document.write(`<td>${this.java}</td><td>${this.python}</td><td>${this.html}</td>`);
+			document.write('<td>'+this.sum()+'</td>');
+			document.write('<td>'+this.avg()+'</td>');
+			document.write('</tr>');
+			
+		}
+	}
+	
+	$(document).ready(function(){
+		$('h2').text('시작');
+		
+		var p1 = new Student('김선호',85,90,100);
+		var p2 = new Student('이재윤',90,95,95);
+		var p3 = new Student('여진구',75,100,100);
+		
+		//함수호출
+		document.write('<h2>학생 정보 출력</h2>');
+		document.write('<table border= '+"1px solid black"+'>');
+		document.write('<tr>');
+		document.write('<th> 이름 </th>');
+		document.write('<th> 자바 </th>');
+		document.write('<th> 파이썬 </th>');
+		document.write('<th> HTML5 </th>');
+		document.write('<th> 총점 </th>');
+		document.write('<th> 평균 </th>');
+		document.write('</tr>');
+		p1.print();
+		p2.print();
+		p3.print();
+		document.write('</table>');
+	});
+</script>
+</head>
+<body>
+</body>
+</html>

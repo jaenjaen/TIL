@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>생성자 함수 이용한 객체 생성</title>
+<script type="text/javascript">
+	function Product(pname, price, cnt) { //생성자형 객체는 함수와 구분하기 위해서 대문자로 사용
+		//this.속성
+		this.pname = pname;
+		this.price = price;
+		this.cnt = cnt;
+	
+		//this.메소드
+		this.buy = function() {
+			//메소드가 하는 일 정의
+			document.write('<h2>구매 물품 정보 보기</h2>');
+			document.write('<h3>물건명:'+this.pname+'</h3>');
+			document.write('<h3>가격:'+this.price+'</h3>');
+			document.write('<h3>개수:'+this.cnt+'</h3>');
+			document.write('<h3>총 가격:'+(this.price * this.cnt)+'</h3>');
+		}
+	}
+	
+	$(document).ready(function(){
+		$('h2').text('시작');
+		
+		var p1 = new Product('NoteBook',1000000,3);
+		var p2 = new Product('NoteBook2',1500000,6);
+		var p3 = new Product('NoteBook3',2400000,1);
+		
+		//함수호출
+		p1.buy();
+		document.write('<h3>----------------------------------------</h3>');
+		p2.buy();
+		document.write('<h3>----------------------------------------</h3>');
+		p3.buy();
+		document.write('<h3>----------------------------------------</h3>');
+	});
+</script>
+</head>
+<body>
+	<h2></h2>
+</body>
+</html>

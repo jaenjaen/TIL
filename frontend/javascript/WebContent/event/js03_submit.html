@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>submit!</title>
+<script>
+ 	function enterance() {
+		var flag = confirm("성인 사이트 19세 이상이신가요?");
+		return flag;
+	}
+</script>
+</head>
+<body>
+	<form action="adult.jsp" onsubmit="return enterance()"> <!-- onsubmit은 항상 form에 써야함 -->
+		<input type="submit"  value="성인페이지 입장">
+	</form>
+</body>
+</html>

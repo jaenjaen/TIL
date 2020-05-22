@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수 선언 두가지 방법 익명함수 / 선언적 함수</title>
+<script type="text/javascript">
+	/* var func = function() {
+		alert("functionA..");
+	}
+	var func = function() {
+		alert("functionB..");
+	}
+	
+	func(); */
+	
+	//선언적 함수 정의 
+	/* func();
+	function func(){
+		alert("func...A");
+	} */
+	
+	//익명함수 + 선언적함수 실행순서
+	
+	var func = function () { alert("func...A");} // 나중에생성
+	function func(){alert("func..B");} // 먼저생성
+	
+	func();
+</script>
+</head>
+<body>
+
+</body>
+</html>

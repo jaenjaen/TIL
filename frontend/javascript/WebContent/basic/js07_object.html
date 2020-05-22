@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체만드는 모든 유형 정리</title>
+
+<script type="text/javascript">
+	//1, 객체 리터럴
+	var p1 = {name:"홍길동",phone:"010-0809-0508",age:20};
+	console.log(p1);
+	
+	//2. 생성자객체
+	var p2 = new Object();
+	p2.name ="홍길동";
+	p2.phone="010-0809-0508";
+	p2.age= 20
+	console.log(p2);
+	
+	//3. 함수를 이용한 객체 생성
+	p2.getInfo = function() {
+		return this.name+"님의 나이는 "+this.age;
+	}
+	console.log(p2.getInfo());
+	
+	//4. 배열객체
+	var p3 = [ 1,22,'Hello'];
+	console.log(p3);
+</script>
+</head>
+<body>
+
+</body>
+</html>

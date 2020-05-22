@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>브라우저로 출력하는 여러가지 형식과 조건문, 기타 등등</title>
+<script type="text/javascript">
+	//1.write()
+	document.write(50+70+'<br>');
+	document.write('50+70 <br>'); //문자열을 계산하려면?
+	document.write(eval('50+70')+'<br>');
+	document.write(eval('50.0+70.0')+'<br>');
+	document.write(eval('56.7+23')+'<br>');
+	document.write(eval('56.7'+'23')+'<br>');
+	document.write(parseFloat('56.7')+parseInt('23')+'<br>');
+	
+	//2.팝업창(대화창) alert(), confirm(),prompt()
+	/* var ans = confirm("정말 삭제하시겠습니까?");
+	if(ans) document.write("삭제되었습니다.<br>");
+	else document.write("삭제 취소되었습니다.<br>"); */
+	
+	/* if(confirm("정말로 탈퇴하시겠습니까?"))
+		document.write("탈퇴되었습니다.<br>")
+	else document.write("탈퇴 처리가 취소되었습니다.<br>") */
+	
+	prompt("당신의 차 번호를 입력하세요");
+	
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
