@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function choiceBox(){
+		var ca = document.checkform.boy;
+		var tmp = "";
+		var flag = false;
+		//alert(ca.length);
+		//선택한 이상형을 alert 창으로 출력-> 하나의 창에 모두 출력
+		//한명도 선택안했으면 alert
+		
+		for(var i=0; i<ca.length; i++){
+			if(ca[i].checked){
+				tmp += ca[i].value+" ";
+				flag= true;
+			}
+		}
+		if(flag == false){
+			alert("최소 한명의 이상형을 선택해야 합니다.");
+		}else{
+			alert("당신의 이상형은"+tmp+"입니다");
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="checkform">
+		<Strong>이상형을 선택하세요 여러명 선택 가능합니다.</Strong><br>
+		<input type='checkbox' name='boy' value='김선호'>김선호<br>
+		<input type='checkbox' name='boy' value='이재윤'>이재윤<br>
+		<input type='checkbox' name='boy' value='여진구'>여진구<br>
+		<input type='checkbox' name='boy' value='황민현'>황민현<br>
+		<input type='checkbox' name='boy' value='유선호'>유선호<br>
+		<input type='button' value='선택' onclick='choiceBox()'>
+	</form>
+</body>
+</html>

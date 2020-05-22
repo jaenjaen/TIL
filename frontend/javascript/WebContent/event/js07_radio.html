@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function reserve() {
+		var ma= document.movieForm.movie;
+		//alert(ma[1].checked)
+		var flag = false;
+		for (var i=0; i<ma.length;i++){
+			
+			if (ma[i].checked){
+			 	alert(ma[i].value+"가 예매되었습니다.");
+			 	ma[i].checked = false;
+			 	flag =true;
+			 	break;
+			}
+		}
+		
+		if (flag == false){
+			alert("영화를 선택하여 주십시오.");
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="movieForm">
+		<input type='radio' name='movie' value='그을린 사랑'>그을린 사랑<br>
+		<input type='radio' name='movie' value='타임패러독스'>타임패러독스<br>
+		<input type='radio' name='movie' value='셔터아일랜드'>셔터아일랜드<br>
+		<input type='radio' name='movie' value='식스센스'>식스센스<br>
+		<input type='button' value='Reservation' onclick='reserve()'>
+	</form>
+</body>
+</html>
