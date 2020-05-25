@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>블랙핑크 in your area</title>
+<style>
+#result {
+	border: 1px solid red;
+	font-size: 0.8em;
+	position: absolute;
+	top: 150px;
+	left: 20px;
+	width: 150px;
+	height: 100px;
+	margin: 10px;
+}
+</style>
+<script>
+	window.onload = function () {
+		//body의 내용을 읽고 난 뒤 호출
+		preview = document.getElementById("preview");
+		preview.onclick = processText; //button onclick시 ProcessText 호출
+	}
+	
+	function processText() {
+		var cont = document.getElementById("inputBox").value;
+		var arr = cont.split('\n');
+		var outMsg = "";
+		
+		for(var i=0; i<arr.length;i++){
+			outMsg+=arr[i]+'<br/>';
+		}
+		
+		document.getElementById('result').innerHTML = outMsg;
+	}
+</script>
+</head>
+<body>
+	<form name='frm'>
+		<textarea rows="5" cols="20" id="inputBox"></textarea>
+		<div>
+			<button type='button' id='preview'>Preview</button> <!--  기본속성이 submit이라서 새로고침됨 -->
+		</div>
+		<div id='result'></div>
+	</form>
+</body>
+</html>

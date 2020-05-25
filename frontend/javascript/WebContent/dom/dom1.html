@@ -1,0 +1,24 @@
+<!-- Document Object Modelling
+	 Tree구조로 메모리에 올라간 html 문서를
+	 조작할 때 사용 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM구조1</title>
+<script>
+	window.onload = function() {
+		var h1 = document.createElement('h1'); //Node생성
+		var txt = document.createTextNode('Hello World!');
+		
+		//기존 태그에 노드 연결
+		h1.appendChild(txt);
+		document.body.appendChild(h1);
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

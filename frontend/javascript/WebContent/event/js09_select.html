@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SELECT폼</title>
+<script>
+	function selectLine() {
+		var sub = document.getElementById("sline")
+		if(sub.value != null) alert(sub.value+"호선을 선택하였습니다.");
+		else if(sub.value =="0")alert("지하철 노선을 선택해주세요");
+		
+	}
+</script>
+</head>
+<body>
+	<form name='subwayfrm' id='frm'>
+		<select name='line' onchange="selectLine()" id="sline">
+			<option value="0">------호선------</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>8</option>
+			<option>9</option>
+		</select>
+	</form>
+</body>
+</html>
