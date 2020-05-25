@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/calculator.css">
+<meta charset="UTF-8">
+<title>Calculator</title>
+<script type="text/javascript">
+	var result = '';
+	var output = document.getElementById('output');
+	
+	function clickButton(num){
+		if(num == "="){
+			if(result == ' '){
+				checkingSpace();
+			}
+			else {
+				output.innerHTML = eval(result);
+			}
+		}
+		else {
+			result += num;
+			output.innerHTML = result;
+		}
+	}
+	
+	function checkingSpace(){
+		alert("값을 입력해주세요");
+	}
+</script>
+</head>
+
+<body>
+	<H1> Encore Calculator</H1>
+	
+	<div id=calculator>
+		<input id='output' type="text" placeholder='0.0' readonly="readonly">
+		
+		<div class='num1'>
+			<button type='button' onclick='clickButton("7")' >7</button>
+			<button type='button' onclick='clickButton("8")' >8</button>
+			<button type='button' onclick='clickButton("9")' >9</button>
+			<button type='button' onclick='clickButton("&#43;")'>+</button>
+		</div>
+		
+		<div class='num2'>
+			<button type='button' onclick='clickButton("4")'>4</button>
+			<button type='button' onclick='clickButton("5")'>5</button>
+			<button type='button' onclick='clickButton("6")'>6</button>
+			<button type='button' onclick='clickButton("&#45;")'>-</button>
+		</div>
+		
+		<div class='num3'>
+			<button type='button' onclick='clickButton("1")'>1</button>
+			<button type='button' onclick='clickButton("2")'>2</button>
+			<button type='button' onclick='clickButton("3")'>3</button>
+			<button type='button' onclick='clickButton("&#42;")'>*</button>
+		</div>
+		
+		<div class='num4'>	
+			<button type='button' onclick='clickButton("0")'>0</button>
+			<button type='button' onclick='clickButton("clear")'>CE</button>
+			<button type='button' onclick='clickButton("&#61;")'>=</button>
+			<button type='button' onclick='clickButton("&#47;")'>/</button>
+		</div>
+		
+		<div>
+		<h2>결 과 이 력</h2>
+		
+		</div>
+	</div>
+</body>
+</html>

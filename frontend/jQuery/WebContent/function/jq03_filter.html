@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>filter(): 동일한 여러개의 태그중에서 조건을 부여해서 걸러내는 기능</title>
+<style>
+	.filtered{
+		background-color:greenyellow;
+		color:blue;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//h1 태그 중에서 걸러내기
+		/* $('h1').filter(function (index) {
+			return index%3==0 || index%5==0
+		}).addClass('filtered'); */
+		
+		/* .css({
+			background:'greenyellow',
+			color: 'blue'
+		}) */
+		
+		
+		/* $('h1').filter(function (index) {
+			return index%2==0
+		}).css('background','pink').css('color','red'); */
+		
+		$('h1').filter('h1:even').css('background','pink').css('color','red');
+		$('h1').filter(':odd').css('background','greenyellow').css('color','white');
+	});
+</script>
+</head>
+<body>
+	<h1>Item-0</h1>
+	<h1>Item-1</h1>
+	<h1>Item-2</h1>
+	<h1>Item-3</h1>
+	<h1>Item-4</h1>
+	<h1>Item-5</h1>
+	<h1>Item-6</h1>
+	<h1>Item-7</h1>
+</body>
+</html>

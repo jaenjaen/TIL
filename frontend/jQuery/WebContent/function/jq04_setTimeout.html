@@ -1,0 +1,56 @@
+<!-- 
+	value-> val()
+	addClass()
+	filter()
+	first()
+	last()
+	setTimeout()
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		
+		//select 태그중에서 선택한 값 받기
+		/* var name = $('select>option:selected').val();
+		alert(name); */
+		
+		//2.setTimeout을 사용하여 일정 시간 이 후에 로직이 돌아가도록 함
+		//setTimeout(함수,몇초)
+		/* setTimeout(function() {
+			var name = $('select>option:selected').val();
+			alert(name);
+		},3000) */
+		
+		//3 select폼에서 선택한 이름이 5초 후 아래에 출력되게 만듬.
+		
+		setTimeout(function() {
+			var name = $('select>option:selected').val();
+			$('input[name=result]').val(name);
+		},5000)
+	});
+</script>
+</head>
+<body>
+	<select multiple="multiple">
+		<option>정훈</option>
+		<option>종민</option>
+		<option>세윤</option>
+		<option>선호</option>
+		<option>딘딘</option>
+		<option>라비</option>
+	</select> <br><br>
+	
+	<!-- 폼추가 -->
+	선택한 이름 출력<br>
+	<input type='text' name='result' size='16'>
+</body>
+</html>
