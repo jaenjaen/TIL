@@ -5,8 +5,9 @@
 <meta charset="UTF-8">
 <title>Calculator</title>
 <script type="text/javascript">
-	var result = '';
+	var result = ' ';
 	var output = document.getElementById('output');
+	
 	
 	function clickButton(num){
 		if(num == "="){
@@ -15,6 +16,7 @@
 			}
 			else {
 				output.innerHTML = eval(result);
+				document.getElementById('outputlist').innerHTML = result;
 			}
 		}
 		else {
@@ -65,7 +67,7 @@
 		
 		<div>
 		<h2>결 과 이 력</h2>
-		
+		<div id='outputlist'></div>
 		</div>
 	</div>
 </body>
