@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#result{
+		background-color : skyblue;
+		width:500px;
+		text-align: center;
+		padding: 20px;
+	}
+	.ball{
+		background-color: yellow;
+		font-weight: bold;
+		text-align: center;
+		padding: 10px;
+   		border-radius: 100%;
+		margin: 20px 20px 10px 10px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	var numbers; // 결과물
+	var count = 0;
+	var intervalId;
+	
+	function startGame() {
+		numbers = selectNumber();
+		intervalId = setInterval(displayNumber,500);
+	}
+	
+	function selectNumber() {
+		var numbers = [0,0,0,0,0,0];
+		var flags = 0;
+		
+		while(true){
+			//난수발생
+			var n = Math.floor(Math.random() * 45) + 1;
+			//중복검사
+			if (!(n in numbers)){
+				//배열추가
+				numbers[flags] = n;
+				flags++;
+			}
+			
+			if(flags>=6){
+				break;
+			}
+		
+		};
+		return numbers;
+	}
+	
+	function displayNumber(){
+		//여기까지 실행됨
+		//append를 이용해서 numbers 안에 들어있는 숫자를 result영역에 붙여나간다
+		$('#result').append('<span>'+numbers[count]+'</span>');
+		$('span').addClass('ball');
+		count++;
+	//만약 count가 6이면 intervalId 중단
+	if(count==6){
+		clearInterval(intervalId);
+	}
+	}
+	
+	window.onload = startGame();
+</script>
+</head>
+<body>
+	<h3>대박을 기원합니다.</h3>
+	<div id='result'></div>
+</body>
+</html>
