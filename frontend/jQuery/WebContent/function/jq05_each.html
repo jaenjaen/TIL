@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>each함수</title>
+<style>
+	/*클래스 속성의 값으로 스타일 지정*/
+	.highLight0{
+		background:red;
+		color:white;
+	}
+	.highLight1{
+		background:orange;
+		color:white;
+	}
+	.highLight2{
+		background:yellow;
+	}
+	.highLight3{
+		background:greenyellow;
+		color:white;
+	}
+	.highLight4{
+		background:blue;
+		color:white;
+	}
+	.highLight5{
+		background:navy;
+		color:white;
+	}
+	.highLight6{
+		background:purple;
+		color:white;
+	}
+	.highLight7{
+		background:pink;
+		color:white;
+	}
+	
+	/*속성 추가*/
+	.fontstyle{
+		color:blue;
+		font-family: sans-serif;
+	}
+	
+	.nth{
+		border: 5px double black;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+	//EACH함수는 for문과 비슷하게 사용함 동일한 태그가 반복적으로 나왔을때 적용하는 함수 h1태그의 갯수만큼 each함수가 수행 - 내부적으로 idx가 돌아감
+	//첫번째 인덱스 0 인덱스는 필요하면 따로 넣어줘야함
+	$(function () {
+		$('h1').each(function(idx) {
+			$(this).addClass('highLight'+idx); // h1으로 그냥하면 h1전체를 다 맥이는거임 각각X this 현재 idx가 작용하는 자기자신
+		});
+		
+		//2.마지막 h1태그를 선택자로 지정 폰트스타일
+		$('h1:last').addClass('fontstyle');
+		//3.짝수 h1태그를 선택자로 지정
+		$('h1').filter(':even').addClass('nth');
+	});
+</script>
+</head>
+<body>
+	<h1>Item-0</h1>
+	<h1>Item-1</h1>
+	<h1>Item-2</h1>
+	<h1>Item-3</h1>
+	<h1>Item-4</h1>
+	<h1>Item-5</h1>
+	<h1>Item-6</h1>
+	<h1>Item-7</h1>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ImageAppend</title>
+<style>
+	.img{
+	 width:200px;
+	 height:300px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('body').append('<h2>HappyDay!</h2>');
+		$('h2').prepend('<font color=red>오늘은 화요일</font>');
+		
+		//1.이미지 부착
+		var img1 = "<img src='../image/1.JPG'>";
+		var img2 = "<img src='../image/2.JPG'>";
+		var img3 = "<img src='../image/3.JPG'>";
+		
+		//2.이미지 설명
+		var h1 = "<h1>사진1</h1>";
+		var h2 = "<h1>사진2</h1>";
+		var h3 = "<h1>사진3</h1>";
+		
+		$('body').append(h1).append(img1);
+		$('body').append(h2).append(img3);
+		$('body').append(h3).append(img2);
+		
+		$('img').addClass('img');
+	});
+</script>
+</head>
+<body>
+
+</body>
+</html>

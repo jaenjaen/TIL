@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BIND 함수</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//1.선택자와 이벤트 함수를 연결하는 것이 가장 기본
+		//2.h2태그 클릭시 function 실행
+		$('h2').bind('click',function() {
+			//$(this).css('background','greenyellow');
+			//$(this).html('Hello!'); // innerHTML과 동일
+			
+			$(this).html(function(idx, html){
+				return html+'★';
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>오늘은 화요일입니다.</h2>
+	<h2>오후 늦게 비가 온다는 예보가 있습니다.</h2>
+	<h2>퇴근 시, 비가 올 수 있으니 우산들 챙겨가세요.</h2>
+</body>
+</html>
