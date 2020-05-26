@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HOVER = (mouseenter+mouseleave)</title>
+<style>
+	.reverse{ 
+		background:blue;
+		color:white;
+		}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('h2').hover(function() {
+			$(this).addClass('reverse');
+		}, function(){
+			$(this).removeClass('reverse');
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<h2>오늘은 화요일입니다.</h2>
+	<h2>오후 늦게 비가 온다는 예보가 있습니다.</h2>
+	<h2>퇴근 시, 비가 올 수 있으니 우산들 챙겨가세요.</h2>
+</body>
+</html>
