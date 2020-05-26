@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Unbind() : 이벤트 해제</title>
+<style>
+	.reverse{ 
+		background:blue;
+		color:white;
+		}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		
+		/* //1. 첫번째 h2 태그를 클릭하면 클릭한 부분의 내용이 red로 변화
+		$('h2:first').click(function() {
+			$(this).html('<font color=red>Click!</font>');
+			alert('Click() calling...');
+			$(this).unbind();//alert 안뜨게 해줌
+		})	 */
+		
+		//2. 위와 결과는 같지만 이게 원래 작동원리 
+		$('h2:first').bind('click',function(){
+			$(this).html('<font color=red>Click!</font>');
+			alert('Click() calling...');
+			$(this).unbind();
+		})
+	});
+</script>
+</head>
+<body>
+	<h2>오늘은 화요일입니다.</h2>
+	<h2>오후 늦게 비가 온다는 예보가 있습니다.</h2>
+	<h2>퇴근 시, 비가 올 수 있으니 우산들 챙겨가세요.</h2>
+</body>
+</html>

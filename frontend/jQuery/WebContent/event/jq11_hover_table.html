@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table{
+		border: 3px solid magenta;
+		width: 550px;
+	}
+	tr,th,td{
+		text-align: center;
+		border: 1px dotted skyblue;
+		font-size: 1.2em;
+	}
+	
+	/*hover 효과를 위한 CSS*/
+	.hover{
+		background-color : #00f;
+		color:#fff;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('tbody tr').hover(function() {
+			//$(this).addClass('hover');
+			//현재 이벤트가 적용된 tr태그 중에서 td라는 태그를 발견하면 addclass하라
+			$(this).find('td').addClass('hover');
+		},function(){
+			//$(this).removeClass('hover');
+			$(this).find('td').removeClass('hover');
+		});
+	});
+</script>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>이 름</th> <th>직 업</th> <th>주 소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>김선호</td> <td>배우</td> <td>서초동</td>
+			</tr>
+			<tr>
+				<td>이재윤</td> <td>가수</td> <td>청담동</td>
+			</tr>
+			<tr>
+				<td>김지호</td> <td>가수</td> <td>성수동</td>
+			</tr>
+			<tr>
+				<td>한혜진</td> <td>모델</td> <td>한남동</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

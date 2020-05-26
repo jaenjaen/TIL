@@ -1,0 +1,51 @@
+<!-- 
+	val()
+	html(), text()
+	setTimeout(function(),시간) -한번만
+	setIntervval(function(),시간)
+	bind()
+	click()
+	hover()
+	each()
+	unbind()
+	hide(),show,fadeout(),fadein()
+	addClass() removeClass() -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hide() and Show()</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('#imgview').hide();
+		$('#mousein').css('background','yellow');
+		
+		/* $('#mousein').mouseenter(function() {
+			$('#imgview').fadeIn(1000);
+		});
+		
+		$('#mousein').mouseleave(function() {
+			$('#imgview').fadeOut(1000);
+		}); */
+		
+		$('#mousein').hover(function(){
+			$('#imgview').fadeIn(1000);
+		},function(){
+			$('#imgview').fadeOut(1000);
+		});
+	
+	});
+</script>
+</head>
+<body>
+	<h2 id='mousein'>**********사진보기**********</h2>
+	<div id='imgview'>
+		<img src="../image/1.JPG" width='300' height='400'>
+	</div>
+</body>
+</html>
