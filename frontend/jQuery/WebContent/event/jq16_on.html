@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div{
+	border-radius: 10px;
+	border: 1px solid red;
+	padding: 10px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('div').click(function() {
+			$('p').append('<h2 id=hello>Encore Academy</h2>');
+		});
+		
+		//처음엔 없지만 나중에 동적으로 생성될 태그에 이벤트 적용 가능
+		$('div').on('click','#hello',onHello);
+	});
+	
+	function onHello() {
+		alert("Happa Day!");
+	}
+</script>
+</head>
+<body>
+	<div>
+		<h1>$(selector).on()</h1>
+		<p>on() 함수 사용하기 : 클릭 함수와 동일하게 적용 / 처음 존재했던 태그에만 이벤트가 적용됨.(만들어지는 태그는 적용이 안됨)</p>
+	</div>
+</body>
+</html>

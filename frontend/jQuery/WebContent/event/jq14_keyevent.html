@@ -1,0 +1,47 @@
+<!--  자동완성에서 많이 사용  -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Key Evevent</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//1.데이터 입력시 감지
+		$('textarea').keyup(function() {
+			var inputlen = $(this).val().length;
+			var remain = 100-inputlen;
+			
+			$('h1').html(remain+'/100');
+			
+			//2.
+			if(remain<=0){
+				alert('100자를 초과하였습니다.');
+			}
+			if(remain>=0 && remain<=9){
+				$('h1,textarea').css('color','red');
+			}
+			else if(remain>=10 && remain<=29){
+				$('h1,textarea').css('color','purple');
+			}
+			else if(remain>=30 && remain<=49){
+				$('h1,textarea').css('color','orange');
+			}
+			else{
+				$('h1,textarea').css('color','blue');
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div>
+		<p>방명록 입니다 100자 이내의 고객님의 의견을 남겨주세요.</p>
+		<h1>100</h1>
+		<textarea rows="5" cols="70" maxlength="100"></textarea>
+	</div>
+</body>
+</html>
