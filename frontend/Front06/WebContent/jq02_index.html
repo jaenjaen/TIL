@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <link rel="stylesheet" type="text/css" href="css/css.css"> -->
+<style>
+	body{
+		background-color: #F5F5F5;
+		margin:0;
+	}
+	
+	header h1{
+		margin: 30px 10% 10px 10%;
+	}
+	
+	nav{
+		background-color:black;
+		margin: 10px 0 10px 0;
+		padding: 15px 10% 15px 10%;
+	}
+	
+	nav a{
+	    color: white;
+	    text-decoration:none;
+	    margin: 0 40px 0 40px;
+	}
+	
+	#contents{
+		margin: 30px 10% 20px 10%;
+	}
+	#cinemaDesc{
+		width:100%;
+		background-color:green;
+		border-radius: 10px;
+		padding: 10px 40px 0 40px;
+		color:white;
+	}
+	#vid{
+		float:left;
+		width:53%;
+		line-height: 100px;
+	}
+	
+	video{
+		width: 100%;
+		vertical-align: middle;
+	}
+	
+	#poster{
+		float:left;
+		width:40%;
+		padding:30px;
+	}
+	#poster img{
+		width: 200px;
+	    height: 300px;
+	}
+	#poster th{
+		color:gray;
+		font-weight: strong;
+		text-align: left;
+		font-size:2em;
+	}
+	footer{
+		width:100%;
+		height:200px;
+		clear: both;
+		background-color: #262626;
+		padding: 20px 0 20px 0;
+	}
+	
+	#about{
+		width:20%;
+		float:left;
+		margin: 30px 0 10px 10%;
+	}
+	#personal{
+		width:20%;
+		float:left;
+		margin: 30px 30px 10px 0;
+	}
+	#notice{
+		width:20%;
+		float:left;
+		margin: 30px 30px 10px 0;
+	}
+	
+	footer h3{
+		color:#F5F5F5;
+		font-weight: strong;
+	}
+	
+	footer p{
+		color:#4d4d4d;
+		margin-block-end: 0;
+	}
+	
+	footer a{
+		color: #595959;
+	}
+</style>
+<title>Ecore 극장</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		
+	});
+</script>
+</head>
+<body>
+	<header>
+		<h1>Ecore 극장</h1>
+	</header>
+	
+	<nav>
+		<a href="#">최신 DVD</a>
+		<a href="#">DVD 목록</a>
+		<a href="#">찜 리스트</a>
+	</nav>
+	
+	<div id='contents'>
+		<div id ='cinemaDesc'>
+			<h1>무공해 힐링 시네마</h1>
+			<p>무공해 힐링 시네마는 새로운 개념의 영화장르의 한가지를 말하는 것입니다. 지친 영혼을 위한 휴식을 주는 영화나,
+			마음을 정화시키고 치유하는 힘을 가진 영화들...</p>
+		</div>
+		<div>
+			<div id='vid'>
+				<video src="media_img/avengers.mp4" controls="controls"></video>
+			</div>
+			<div id='poster'>
+				<table>
+					<thead>
+						<tr>
+							<th>쿵푸팬더</th> <th>어벤져스</th> <th>빅벅</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src='media_img/movie_image2.jpg'></td>
+							<td><img src='media_img/TheAvengers2012Poster.jpg'></td>
+							<td><img src='media_img/BigBuck.jpg'></td>
+						</tr>
+						<tr>
+							<td><button>미리보기</button> <button>찜하기</button></td>
+							<td><button>미리보기</button> <button>찜하기</button></td>
+							<td><button>미리보기</button> <button>찜하기</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div id='about'> 
+			<h3>About</h3>
+			<p>서울 남부터미널 엔코아 아카데미</p>
+			<a href="mailto:encore@academy.com">encore@academy.com</a>
+		</div>
+		<div id='personal'>
+			<h3>개인정보 취급 방침</h3>
+			<a href="#">개요</a><br>
+			<a href="#">문의처</a>
+		</div>
+		<div id='notice'>
+			<h3>공지사항</h3>
+			<a href="#">오시는 길</a><br>
+			<a href="#">오류시 문의사항</a>
+		</div>
+	</footer>
+</body>
+</html>

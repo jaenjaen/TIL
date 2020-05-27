@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table tr td{
+		border: 2px solid black;
+		margin: :10px;
+		width:80px;
+		height:90px;
+	}
+	.small img{
+		width: 80px;
+		height: 90px;
+		border: none;
+		margin: 10px;
+	}
+	.large img{
+		width: 450px;
+	}
+	
+	.hover{
+		background: pink;
+		color:white;
+		font-weight: bold;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//마우스가 작은 이미지 영역 안에 들어가면 hover 효과
+		$('.small').hover(function() {
+			$(this).parent().addClass('hover');
+			
+			//해당 객체의 속성 받아오기
+			var src = $(this).attr('href');
+			
+			$('.large').children().fadeOut(1000);
+			$('.large').children().attr('src',src);
+			$('.large').children().fadeIn(1000);
+		},function(){
+			$(this).parent().removeClass('hover');
+		});
+		
+		//td태그 안에서 p태그 찾아서 css적용
+		$('td').find('p').css('font-size','12pt').css('color','red').css('font-weight','bold');
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td width='150' align='center' height='200'>
+				<a href="../image/2.JPG" class="small">
+					<img alt="" src="../image/2.JPG">
+				</a>
+				<p>썬글라스</p>
+			</td>
+			
+			<td width='350' align='center' rowspan='5'>
+				<a href="../image/2.JPG" class="large">
+					<img alt="" src="../image/2.JPG">
+				</a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width='150' align='center' height='200'>
+				<a href="../image/3.JPG" class="small">
+					<img alt="" src="../image/3.JPG">
+				</a>
+				<p>반바지</p>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width='150' align='center' height='200'>
+				<a href="../image/4.JPG" class="small">
+					<img alt="" src="../image/4.JPG">
+				</a>
+				<p>머리핀</p>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width='150' align='center' height='200'>
+				<a href="../image/5.JPG" class="small">
+					<img alt="" src="../image/5.JPG">
+				</a>
+				<p>파마머리</p>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width='150' align='center' height='200'>
+				<a href="../image/1.JPG" class="small">
+					<img alt="" src="../image/1.JPG">
+				</a>
+				<p>김태희</p>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
