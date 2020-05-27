@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.img{
+		position: absolute;
+		top: 50px;
+		left: 50px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//1. 모든 이미지 숨김
+		$('.img').hide();
+		
+		//2. 첫번째 이미지가 보여지도록 함
+		$('.img:first').fadeIn(2000);
+		
+		//3. 보이는 이미지를 클릭할 때 마다 다음번 이미지가 보여지도록 슬라이드 효과?
+		$('.img').click(function(event) {
+			event.preventDefault();
+			
+		var next = $(this).next().length?$(this).next():$('.img:first'); // 마지막 사진에서 다시 처음으로
+		
+		/* $(this).hide(1000);
+		next.show(1000); */
+		
+		$(this).slideToggle(2000);
+		next.slideToggle(2000);
+		});
+	});
+</script>
+</head>
+<body>
+	<a class='img' href="http://jquery.com">
+		<img src='../image/1.JPG' width='300' height='370'>
+	</a>
+	<a class='img'>
+		<img src='../image/2.JPG' width='300' height='370'>
+	</a>
+	<a class='img'>
+		<img src='../image/3.JPG' width='300' height='370'>
+	</a>
+	<a class='img'>
+		<img src='../image/4.JPG' width='300' height='370'>
+	</a>
+	<a class='img'>
+		<img src='../image/5.JPG' width='300' height='370'>
+	</a>
+</body>
+</html>
