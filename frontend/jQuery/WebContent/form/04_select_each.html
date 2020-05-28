@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>셀렉트 옵션 동적생성</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('#addOptionBtn').one('click',function(){
+			var arr= ['민우','이환','은원','시환','장혁','한민','현민'];
+			
+			/* $(arr).each(function(index){
+				$('#friend').append('<option value='+arr[index]+'>'+arr[index]+'</option>');
+			});
+			//$('#addOptionBtn').unbind(); */
+			
+			$(arr).each(function(index,item){
+				$('#friend').append('<option value='+item+'>'+item+'</option>');
+			});
+			
+		});
+		
+		$('#deleteOptionBtn').on('click',function(){
+			//생성된 폼을 제거
+			$('#friend option').remove();
+		})
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="옵션 생성" id="addOptionBtn"><br>
+	<input type="button" value="옵션 삭제" id="deleteOptionBtn"><br><br>
+	
+	<select id='friend'>
+		
+	</select>
+</body>
+</html>

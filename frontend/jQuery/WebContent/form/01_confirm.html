@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사이트</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//1. a 태그의 속성중 w3가 포함되어있는 사이트를 클릭했을 떄
+		$('a[href*=w3]').click(function() {
+			//confirm창 뜨고 a의 밸류 사이트로 이동하시겠습니까? 출력
+			var name = $(this).html();
+			return confirm(name+'로 이동하시겠습니까?'); //return 없으면 false가 안먹혀서 링크로 넘어감
+		})
+		//포함 * 시작^ 단어로서 포함 ~ 끝나는거$
+		
+	});
+</script>
+</head>
+<body>
+	<a href="http://www.jquery.com">jQuery</a><br>
+	<a href="https://www.w3schools.com/">w3schools</a>
+</body>
+</html>

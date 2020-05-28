@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('#eachBtn').click(function () {
+			var arr = [];
+			arr.push('김선호');
+			arr.push('이재윤');
+			arr.push('여진구');
+			arr.push('안정원');
+			
+			//alert(array.toString());
+			
+			//1. for문을 사용해 alert창 한번 뜨고 그안에 이름 띄우기..?
+			var name = ""
+			/*for(var i=0; i<arr.length;i++){
+				name += arr[i]+" ";
+			}
+			alert(name); */
+			
+			/* each
+			
+			$(arr).each(function(index) {
+				name += index+1+"."+arr[index]+" ";
+			});
+			alert(name); */
+			
+			/* //each2
+			$.each(arr,function(index) {
+				name += index+1+"."+arr[index]+" ";
+			});
+			alert(name); */
+			
+			alert($.inArray('김선호',arr)); //inArray = arr.index() array내부에 존재하지 않으면 -1임
+		});
+	});
+</script>
+</head>
+<body>
+	<input type='button' value='배열에 each()적용' id='eachBtn'>
+</body>
+</html>

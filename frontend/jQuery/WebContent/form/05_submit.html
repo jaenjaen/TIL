@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		
+		//자바스크립트의 onsubmit과 같음
+		$("#memberFrm").submit(function() {
+			var id = $('#userId').val();
+			var name = $('input[name=userName]').val();
+			var addr = $(':text[name=userAddr]').val();
+			/* alert(name+"님의 id: "+id+"와 주소:"+addr); */
+			
+			//confirm 연결
+			return confirm(name+'님의 id '+id+' 주소  '+addr+'를 전송할까요?');
+		})
+	});
+</script>
+</head>
+<body>
+	<h2>form으로 전송한 값 서버에서 받아서 처리하기~</h2>
+	<!-- form의 name의 key form의 값이 value로 잡힘 -->
+	
+	<form action="05_result.jsp" method='get' id="memberFrm">
+		아이디:<input type="text" name='userId' id='userId'><br>
+		이   름:<input type="text" name='userName' id='userName'><br>
+		주   소:<input type="text" name='userAddr' id='userAddr'><br><br>
+		<input type='submit' value='DataSend'>
+	</form>
+</body>
+</html>
