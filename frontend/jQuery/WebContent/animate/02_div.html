@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div{
+	 position:relative;
+	 width:70px;
+	 height: 70px;
+	 border: 2px solid skyblue;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		/* $('div').click(function() {
+			$(this).animate({
+				left:'500px'
+			},'slow');
+		}); */
+		
+		/* $('div').hover(function() {
+			$(this).animate({
+				left:'500px'
+			},'slow');
+		},function(){
+			$(this).animate({
+				left:'0px'
+			},'slow');
+		}); */
+		
+		$('div').click(function() {
+			$(this).animate({
+				width:'+=80',
+				height:'+=80'
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

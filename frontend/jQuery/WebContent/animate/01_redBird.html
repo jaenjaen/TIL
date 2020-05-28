@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	img{
+		width:65px;
+		height:65px;
+		background:orange;
+		position:relative;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//좌우 이동시에는 right는 없음 left로 부터 n(px)떨어진 걸 명시해주면 됨.
+		$('img').animate({
+			left:'300px'},'fast');
+		
+		$('img').animate({
+			left:'100px',
+			top: '100px'},'slow');
+		
+		//상하단 변화 down 없음
+		$('img').animate({
+			top:'100px'},'slow');
+		
+		$('img').animate({
+			top:'400px'},'slow');
+		
+		//이미지 크기의 변화
+		$('img').animate({
+			width:'50px'},'slow');
+		
+		$('img').animate({
+			height:'100px'},'slow');
+
+		
+		setTimeout(function() {
+			$('img').hide();
+			alert("앵그리버드 숨었다.!")
+		},5000);
+		
+		setTimeout(function() {
+			$('img').show();
+			alert("까꿍!");
+		},7000);
+	});
+	
+</script>
+</head>
+<body>
+	<img alt="" src="../image/redbird.png">
+</body>
+</html>
