@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+header{
+	text-align: center;
+	background-color:black;
+	padding: 5px 0;
+	margin-top: 40px;
+}
+
+header h3{
+	color: white;
+}
+
+#list{
+	margin-top: 20px;
+	text-align: center;
+}
+
+#list table{
+	width:95%;
+	margin: 0 auto;
+}
+
+#list img{
+	width:100px;
+	hegith:200px;
+}
+
+#total{
+	background-color: orange;
+	text-align: right;
+	padding:3px 10px;
+	margin: 10px 0;
+}
+
+footer{
+	text-align: center;
+}
