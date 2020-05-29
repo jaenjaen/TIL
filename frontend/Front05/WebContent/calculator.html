@@ -2,9 +2,33 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/calculator.css">
-<script charset="utf-8" type="text/javascript" src="js/calculator.js"></script>
 <meta charset="UTF-8">
 <title>Calculator</title>
+<script type="text/javascript">
+	var result = ' ';
+	var output = document.getElementById('output');
+	
+	
+	function clickButton(num){
+		if(num == "="){
+			if(result == ' '){
+				checkingSpace();
+			}
+			else {
+				output.innerHTML = eval(result);
+				document.getElementById('outputlist').innerHTML = result;
+			}
+		}
+		else {
+			result += num;
+			output.innerHTML = result;
+		}
+	}
+	
+	function checkingSpace(){
+		alert("값을 입력해주세요");
+	}
+</script>
 </head>
 
 <body>
