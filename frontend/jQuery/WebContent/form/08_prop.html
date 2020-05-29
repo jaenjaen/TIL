@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('input[name=allCheck]').change(function() { // click도 가능
+			/* if($("input[name=allCheck]").is(":checked")){
+				// if($(this).prop('checked',true)){
+		            $('input[name=menu]').prop('checked',true);
+		        }else{
+		        	$('input[name=menu]').prop('checked',false);
+		        } */
+		        var check = $(this).prop('checked');
+		        $('input[name=menu]').prop('checked',check);
+		});
+	});
+</script>
+</head>
+<body>
+	<h3>메뉴 선택하기</h3>
+	<table border='2' bgcolor='yellow' width='400'>
+		<tr>
+			<td><input type="checkbox" name="allCheck"></td>
+			<td>전체선택</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="menu"></td>
+			<td>짬뽕</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="menu"></td>
+			<td>짜장면</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="menu"></td>
+			<td>탕수육</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="menu"></td>
+			<td>유산슬</td>
+		</tr>
+	</table>
+</body>
+</html>

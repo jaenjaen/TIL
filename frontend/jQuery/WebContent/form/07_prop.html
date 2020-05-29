@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PROP</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('#checkBtn').click(function() {
+			$('#mailing').prop('checked',true);
+		})
+		
+		$('#uncheckBtn').click(function() {
+			$('#mailing').prop('checked',false);
+		})
+	});
+</script>
+</head>
+<body>
+	메일확인 : <input type="checkbox" id='mailing'><p></p>
+	<input type="button" id='checkBtn'value='체크하기'>
+	<input type="button" id='uncheckBtn'value='체크해체'>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(function () {
+		//1. 폼에 입력된 값을 다 가지고 action에 연결된 페이지로 이동 전송 하는 함수 사용
+		$('#frm').submit(function(event) {
+			//id password 입력된 값을 각가 변수에 할당
+			var id = $('#id').val();
+			var pass = $('#pass').val();
+			
+			id = '';
+			pass = '';
+			$('#id').focus();
+			
+			//event.preventDefalut();
+			//return false; // == action이 안먹는단 소리
+			
+			//3. checkbox 취미 하나도 선택 안하면 alert 하나 이상 선택하면 alert
+			var arr = $('input[name=hobby]:checked');
+			if(arr.length==0){
+				alert("취미를 하나 이상 선택해주세요.");
+				event.preventDefault();
+			}else{
+				var txt = "";
+				$(arr).each(function() {
+					txt += $(this).val();+" ";
+				})
+				alert("당신의 취미는"+txt+"입니다.");
+			}
+			
+		});
+		
+		//4.select form에서 선택한 번호가 div영역에 출력
+		$('#hp').change(function() {
+			var arr = $('#hp').val();
+			var str ='';
+			
+			$.each(arr,function(index){
+				str += arr[index]+"<br>";
+			});
+			$('#resultView').html(str);
+		});
+	});
+</script>
+</head>
+<body>
+	<form action='09_result.jsp' id='frm'>
+		Id:<input type='text' name='id' id='id'><p>
+		Password: <input type='password' name='pass' id='pass'><p><p>
+		<strong>당신의 취미를 선택해주세요</strong><br>
+		<input type="checkbox" name='hobby'value='reading'>독서<br>
+		<input type="checkbox" name='hobby'value='walking'>산책<br>
+		<input type="checkbox" name='hobby'value='music'>음악듣기<br>
+		<input type="checkbox" name='hobby'value='movie'>영화보기<br>
+		<input type="checkbox" name='hobby'value='biking'>자전거 타기<br>
+		<hr>
+		<select id='hp' multiple="multiple" name="hp">
+			<option>010</option>
+			<option>011</option>
+			<option>017</option>
+		</select><p>
+		<input type="submit" value='send'>
+	</form>
+	
+	<div id='resultView'></div>
+</body>
+</html>
