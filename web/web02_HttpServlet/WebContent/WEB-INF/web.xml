@@ -19,4 +19,14 @@
     <servlet-name>HttpFormServlet</servlet-name>
     <url-pattern>/FS</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HttpFormServlet2</display-name>
+    <servlet-name>HttpFormServlet2</servlet-name>
+    <servlet-class>servlet.form.HttpFormServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HttpFormServlet2</servlet-name>
+    <url-pattern>/FS2</url-pattern>
+  </servlet-mapping>
 </web-app>
