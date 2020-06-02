@@ -3,16 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <title>login</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-	$.(function() {
-		
-	});
-</script>
-<style>
-</style>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/login.css">
+	<script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
-	
+	<div>
+		<img src='img/book.png'>
+		
+		<form action='MainServlet' method='post' id='loginFrm')>
+			<p>로그인하여 주세요</p>
+			<label>ID</label><input type='text' name='id' class='login'><br>
+			<label>PASSWORD</label> <input type="password" name='pass' class='login'><br>
+			<hr>
+			<input type="submit" value ='LOGIN' class="btn btn-success">
+		</form>
+	</div>
 </body>
 </html>
