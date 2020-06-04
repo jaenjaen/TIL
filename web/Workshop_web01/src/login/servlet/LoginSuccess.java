@@ -26,7 +26,7 @@ public class LoginSuccess extends HttpServlet {
 		//out.println("<h2>A진입</h2>");
 		out.println("<h3 align=center>"+id+"님이 로그인 되었습니다.!!<br><br>");
 	
-		out.println("<a href=#>도서 등록<br>");
+		out.println("<a href=book.html>도서 등록<br>");
 		out.println("<a href=login.html>로그아웃");
 		out.println("</body></html>");
 		out.close();

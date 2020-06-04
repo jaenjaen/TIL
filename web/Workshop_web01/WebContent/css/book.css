@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+header {
+	background-color: #CDD4D2;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 15px;
+	}
+	
+	table{
+	width: 100%;
+	border: 1px solid #CDD4D2;
+	border-collapse: collapse;
+	}
+	tr,td{
+	border: 1px solid #CDD4D2;
+	}
+	#notice{
+	text-align: right;
+	}
+	#color{
+	background-color: #CDD4D2;
+	height: 40px;
+	}
+	.bookinfo{
+	width: 127px;
+	}
+	.input{
+	padding: 5px 15px;
+	}
+	.input_desc{
+	background-color: #CDD4D2;
+	padding: 5px 15px;
+	}
+	
+	#button{
+		background-color: #CDD4D2;
+		text-align: center;
+		padding: 5px 15px;
+		margin-top: 15px;
+	}
+	
+	footer{
+	text-align: center;
+	}
+	
+	footer p{
+	margin-block-start: 0px;
+	}
