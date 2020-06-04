@@ -26,8 +26,8 @@ public class RegisterServlet extends HttpServlet {
 	protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		//양방향 한글처리
-		req.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html;charset=utf-8");
+		/*req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=utf-8");*/
 		PrintWriter out = res.getWriter();
 		
 		//폼값 받아

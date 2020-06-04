@@ -26,8 +26,8 @@ public class ViewServlet extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		req.setCharacterEncoding("UTF-8");
-		res.setContentType("text/html;charset=utf-8");
+		/*req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=utf-8");*/
 		PrintWriter out = res.getWriter();
 		
 		//Attribute에 바인딩 된 데이터 받아와서
