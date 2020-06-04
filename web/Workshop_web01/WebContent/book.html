@@ -61,7 +61,7 @@
 		<h2>도서 등록 화면</h2>
 	</header>
 	
-	<form action='saveBook' method='post' name='Frm' onsubmit="return check()">
+	<form action='SaveBook' method='post' name='Frm' onsubmit="return check()">
 	<table>
 		<thead>
 			<tr>
@@ -88,6 +88,7 @@
 				<td  class='bookinfo'>* 도서종류</td>
 				<td class='input'>
      				<select name='kinds'>
+     					<option value='종류'>종류</option>
          				<option value='자바'>자바</option>
          				<option value='운영체제'>운영체제</option>
         				<option value='웹'>웹</option>

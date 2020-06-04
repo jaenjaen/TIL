@@ -10,8 +10,7 @@ public class BookVo {
 	private String release;
 	private String publisher;
 	private String writer;
-	private int price;
-	private String unit;
+	private String price;
 	private String desc;
 	
 	
@@ -25,7 +24,7 @@ public class BookVo {
 	}
 
 	public BookVo(String isbn, String title, String kinds, String country, String release, String publisher,
-			String writer, int price, String unit, String desc) {
+			String writer, String price, String desc) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -35,7 +34,6 @@ public class BookVo {
 		this.publisher = publisher;
 		this.writer = writer;
 		this.price = price;
-		this.unit = unit;
 		this.desc = desc;
 	}
 	
@@ -81,17 +79,11 @@ public class BookVo {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
-	}
-	public String getUnit() {
-		return unit;
-	}
-	public void setUnit(String unit) {
-		this.unit = unit;
 	}
 	public String getDesc() {
 		return desc;
@@ -103,7 +95,6 @@ public class BookVo {
 	@Override
 	public String toString() {
 		return "BookVo [isbn=" + isbn + ", title=" + title + ", kinds=" + kinds + ", country=" + country + ", release="
-				+ release + ", publisher=" + publisher + ", writer=" + writer + ", price=" + price + ", unit=" + unit
-				+ ", desc=" + desc + "]";
+				+ release + ", publisher=" + publisher + ", writer=" + writer + ", price=" + price + ", desc=" + desc + "]";
 	}
 }
