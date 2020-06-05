@@ -34,15 +34,11 @@ public class FindMemberServlet extends HttpServlet {
 		
 		//member return not null
 		if (member !=null) {
-			System.out.println("P");
-			
 			req.setAttribute("member", member);
 			req.getRequestDispatcher("find_ok.jsp").forward(req, res);
 			}
 		//null
 		else {
-			System.out.println("F");
-			
 			req.getRequestDispatcher("find_fail.jsp").forward(req, res);
 		}
 	}

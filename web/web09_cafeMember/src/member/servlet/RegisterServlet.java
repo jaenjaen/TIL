@@ -45,15 +45,9 @@ public class RegisterServlet extends HttpServlet {
 		
 		//biz
 		dao.registerMember(member);
-		ArrayList<MemberVO> members = dao.showAllMembers();
 	
 		//네비게이션
-		req.setAttribute("members", members);
-		req.getRequestDispatcher("allShow.jsp").include(req, res);
-		
-		//뒤에 로그인 달기
-		PrintWriter out = res.getWriter();
-		out.println("<br><h3>"+id+"님이 회원가입 하셨습니다.</h3>");
+		res.sendRedirect("AMS?id="+id);
 	}
 
 }

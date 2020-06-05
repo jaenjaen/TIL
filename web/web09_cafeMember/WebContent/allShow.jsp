@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+		if(request.getParameter("id")!=null){
+			out.println(request.getParameter("id")+"님이 회원으로 등록하셨습니다.");
+		}
+	%>
 	<hr>
 	<h2>전체 카페 회원 명단</h2>
 	<table>
