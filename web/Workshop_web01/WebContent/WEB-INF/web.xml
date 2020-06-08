@@ -21,7 +21,7 @@
     <description></description>
     <display-name>MainServlet</display-name>
     <servlet-name>MainServlet</servlet-name>
-    <servlet-class>login.servlet.MainServlet</servlet-class>
+    <servlet-class>servelt.controller.MainServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MainServlet</servlet-name>
@@ -29,29 +29,9 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>LoginSuccess</display-name>
-    <servlet-name>LoginSuccess</servlet-name>
-    <servlet-class>login.servlet.LoginSuccess</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginSuccess</servlet-name>
-    <url-pattern>/LoginSuccess</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>LoginError</display-name>
-    <servlet-name>LoginError</servlet-name>
-    <servlet-class>login.servlet.LoginError</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginError</servlet-name>
-    <url-pattern>/LoginError</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>SaveBook</display-name>
     <servlet-name>SaveBook</servlet-name>
-    <servlet-class>book.servlet.SaveBook</servlet-class>
+    <servlet-class>servelt.controller.SaveBook</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SaveBook</servlet-name>

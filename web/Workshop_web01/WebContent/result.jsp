@@ -1,4 +1,4 @@
-<%@page import="book.model.BookVo"%>
+<%@page import="servelt.model.user.BookVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,7 +29,7 @@
 	도서종류: <%=book.getKinds()%><br>
 	저자: <%=book.getWriter()%><br></p>
 	<footer>
-		<a href='book.html'>추가 등록</a>
+		<a href='book/Book.html'>추가 등록</a>
 		<a href='#'>도서 목록</a>
 	</footer>
 </body>
