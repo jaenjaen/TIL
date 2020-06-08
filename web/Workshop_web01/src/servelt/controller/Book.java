@@ -49,7 +49,7 @@ public class Book extends HttpServlet {
 		dao.bookRegister(book);
 		
 		//forwarding
-		RequestDispatcher dispatcher= req.getRequestDispatcher("result.jsp");
+		RequestDispatcher dispatcher= req.getRequestDispatcher("book/result.jsp");
 		dispatcher.forward(req, res);
 	}
 
