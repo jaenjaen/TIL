@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import servelt.model.user.UserVo;
 
 
 public interface BookDAO {
@@ -12,4 +15,5 @@ public interface BookDAO {
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException;
 	
 	void bookRegister(BookVo book) throws SQLException;
+	ArrayList<BookVo> showAllbook() throws SQLException;
 }

@@ -1,23 +1,23 @@
 package servelt.model.book;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class BookVo {
 	private String isbn;
 	private String title;
 	private String catalogue;
 	private String nation;
-	private String publish_date;
+	private Date publish_date;
 	private String publisher;
 	private String author;
-	private String price;
+	private int price;
 	private String currency;
 	private String desc;
 	
 	public BookVo() {}
 	
-	public BookVo(String isbn, String title, String catalogue, String nation, String publish_date, String publisher,
-			String author, String price, String currency, String desc) {
+	public BookVo(String isbn, String title, String catalogue, String nation, Date publish_date, String publisher,
+			String author, int price, String currency, String desc) {
 		super();
 		this.isbn = isbn;
 		this.title = title;
@@ -63,11 +63,11 @@ public class BookVo {
 		this.nation = nation;
 	}
 
-	public String getPublish_date() {
+	public Date getPublish_date() {
 		return publish_date;
 	}
 
-	public void setPublish_date(String publish_date) {
+	public void setPublish_date(Date publish_date) {
 		this.publish_date = publish_date;
 	}
 
@@ -87,11 +87,11 @@ public class BookVo {
 		this.author = author;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
