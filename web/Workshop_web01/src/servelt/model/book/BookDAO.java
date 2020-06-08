@@ -11,5 +11,5 @@ public interface BookDAO {
 	void closeAll(PreparedStatement ps, Connection conn) throws SQLException;
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException;
 	
-	BookVo bookRegister(BookVo book) throws SQLException;
+	void bookRegister(BookVo book) throws SQLException;
 }

@@ -47,15 +47,13 @@ public class BookDAOimpl implements BookDAO {
 	}
 
 	@Override
-	public BookVo bookRegister(BookVo book) throws SQLException {
+	public void bookRegister(BookVo book) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		
 		conn = getConnection();
 		String query = "INSERT INTO book(isbn,title,catalogue,nation,publish_date,publisher,author,price,currency,description)"
 				+ "VALUE(?,?,?,?,?,?,?,?,?,?)";
-				
-		return null;
 	}
 
 }
