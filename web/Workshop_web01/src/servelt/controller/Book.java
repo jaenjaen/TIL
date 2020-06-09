@@ -27,17 +27,31 @@ public class Book extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		Date publish_date = null;
+		int price = 0;
+		
 		//값 받아와서
 		String isbn = req.getParameter("isbn1")+"-"+req.getParameter("isbn2")+"-"+req.getParameter("isbn3");
 		String title = req.getParameter("title");
 		String catalogue = req.getParameter("kinds");
 		String nation = req.getParameter("country");
-		Date publish_date = Date.valueOf(req.getParameter("release"));
+	
+		if (req.getParameter("release").equals("")) {
+			publish_date = Date.valueOf("9999-12-13");
+		}else {
+		 publish_date = Date.valueOf(req.getParameter("release"));}
+	
 		String publisher = req.getParameter("publisher ");
 		String author = req.getParameter("writer");
-		int price = Integer.parseInt(req.getParameter("price"));
+		
+		if(req.getParameter("price").equals("")) {
+			price = 0;
+		}else {
+		price = Integer.parseInt(req.getParameter("price"));}
+		
 		String currency = req.getParameter("unit");
 		String desc = req.getParameter("desc");
+		
 		
 		//객체생성
 		BookVo book = new BookVo(isbn, title, catalogue, nation, publish_date, publisher, author, price, currency, desc);

@@ -1,31 +1,25 @@
 <%@page import="servelt.model.user.UserVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>LogOUT</title>
-<%
-	UserVo vo = (UserVo) session.getAttribute("vo");
-	if(vo==null){
-%>
-	<b><a href='login.html'>로그인 페이지로 이동</a></b>
-<%
-	}else{
+<c:choose>
+	<c:when test="${vo!=null}">
 		session.invalidate();
-	}
-%>
-
-<script>
-	function logoutpopup() {
-		alert("LogOut!!");
-	}
-</script>
+		<script>
+			alert("LogOut!!");
+			location.href="login.html";
+		</script>
+	</c:when>
+	<c:otherwise>
+		<b><a href='login.html'>로그인하기</a></b>
+	</c:otherwise>
+</c:choose>
 </head>
-<body onload="return logoutpopup()">
-	<b>로그아웃 되었습니다.</b><br>
-	<a href='login.html'>로그인하기</a>
+<body>
 </body>
 </html>

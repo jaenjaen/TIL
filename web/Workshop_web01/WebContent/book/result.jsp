@@ -13,6 +13,8 @@
 	footer{
 		background-color: #CDD4D2;
 		padding: 10px 0;
+		
+		
 	}
 </style>
 
@@ -20,7 +22,7 @@
 
 <body>
 	<h2>결과 페이지</h2>
-	<h3><%=request.getParameter("title")%>가 정상적으로 저장 되었습니다.</h3>
+	<h3>${param.title}가 정상적으로 저장 되었습니다.</h3>
 	<footer>
 		<a href='Book.html'>추가 등록</a>
 		<a href='ShowAllBook'>도서 목록</a>

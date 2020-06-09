@@ -1,3 +1,4 @@
+
 function check() {
 	var form = document.Frm;
 	
@@ -7,15 +8,17 @@ function check() {
 		return false;
 	} 
 	
-	if(parseInt(form.isbn1.value)>9999 && parseInt(form.isbn1.value)<1000 ){
+	if(Number(form.isbn1.value)>9999 || Number(form.isbn1.value)<1000 ){
 		alert("첫번째 자리는 4자리 입력하여 주세요");
 		form.isbn1.focus();
 		return false;
-	}else if(parseInt(form.isbn2.value)>999 && parseInt(form.isbn2.value)<100 ){
+	}
+	if(Number(form.isbn2.value)>999 || Number(form.isbn2.value)<100 ){
 		alert("두번째 자리는 3자리 입력하여 주세요");
 		form.isbn2.focus();
 		return false;
-	}else if(parseInt(form.isbn3.value)>999 && parseInt(form.isbn3.value)<100 ){
+	}
+	if(Number(form.isbn3.value)>999 || Number(form.isbn3.value)<100 ){
 		alert("세번째 자리는 3자리 입력하여 주세요");
 		form.isbn3.focus();
 		return false;
@@ -38,5 +41,5 @@ function check() {
 		form.writer.focus();
 		return false;
 	}
-
 }
+
