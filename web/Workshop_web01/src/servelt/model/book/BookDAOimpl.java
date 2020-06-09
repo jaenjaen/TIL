@@ -19,10 +19,9 @@ public class BookDAOimpl implements BookDAO {
 	
 	private static BookDAOimpl dao = new BookDAOimpl();
 	private BookDAOimpl() {
-		
 		try {
 			InitialContext ic = new InitialContext();
-			ds = (DataSource) ic.lookup("java:java:comp/env/jdbc/mysql");
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/mysql");
 			System.out.println("data Lookup 성공***");
 		} catch (NamingException e) {
 			System.out.println("data Lookup 실패***");

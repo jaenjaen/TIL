@@ -5,7 +5,8 @@
      attribute에 바인딩 된 값을 찾아오는 로직을 태그로 바꾼 기술
        변수명이 아닌 객체를 바인딩한 이름이 사용된다. request+Scope.바인딩한이름
        똑같은 이름으로 바인딩 되어도 request->session->application
-       만약 없으면 EL은 출력하지 않음 nullpoint안떨어짐 (해당 라인만 출력안함) -->
+       만약 없으면 EL은 출력하지 않음 nullpoint안떨어짐 (해당 라인만 출력안함)
+       연산도 가능 -->
     
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@
 	${sessionScope.result} <br>
 	${result}<br>
 	${loveya }<br>
-	${result }
+	${result+1000}
 	
 </body>
 </html>

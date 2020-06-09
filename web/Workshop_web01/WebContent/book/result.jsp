@@ -22,8 +22,8 @@
 	<h2>결과 페이지</h2>
 	<h3><%=request.getParameter("title")%>가 정상적으로 저장 되었습니다.</h3>
 	<footer>
-		<a href='book/Book.html'>추가 등록</a>
-		<a href='#'>도서 목록</a>
+		<a href='Book.html'>추가 등록</a>
+		<a href='ShowAllBook'>도서 목록</a>
 	</footer>
 </body>
 </html>

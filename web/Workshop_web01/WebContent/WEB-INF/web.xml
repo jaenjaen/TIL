@@ -29,12 +29,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>SaveBook</display-name>
-    <servlet-name>SaveBook</servlet-name>
-    <servlet-class>servelt.controller.SaveBook</servlet-class>
+    <display-name>Book</display-name>
+    <servlet-name>Book</servlet-name>
+    <servlet-class>servelt.controller.Book</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SaveBook</servlet-name>
-    <url-pattern>/SaveBook</url-pattern>
+    <servlet-name>Book</servlet-name>
+    <url-pattern>/Book</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowAllBook</display-name>
+    <servlet-name>ShowAllBook</servlet-name>
+    <servlet-class>servelt.controller.ShowAllBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowAllBook</servlet-name>
+    <url-pattern>/ShowAllBook</url-pattern>
   </servlet-mapping>
 </web-app>

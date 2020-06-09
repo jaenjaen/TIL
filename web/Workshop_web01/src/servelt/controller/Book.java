@@ -2,13 +2,13 @@ package servelt.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import servelt.model.book.BookDAOimpl;
 import servelt.model.book.BookVo;
@@ -32,7 +32,7 @@ public class Book extends HttpServlet {
 		String title = req.getParameter("title");
 		String catalogue = req.getParameter("kinds");
 		String nation = req.getParameter("country");
-		Date publish_date = req.getParameter("release");
+		Date publish_date = Date.valueOf(req.getParameter("release"));
 		String publisher = req.getParameter("publisher ");
 		String author = req.getParameter("writer");
 		int price = Integer.parseInt(req.getParameter("price"));
@@ -44,9 +44,15 @@ public class Book extends HttpServlet {
 		System.out.println(book.toString());
 		
 		
-		//dao biz
+		//dao bizs
 		BookDAOimpl dao = BookDAOimpl.getInstance();
-		dao.bookRegister(book);
+		try {
+			dao.bookRegister(book);
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			System.out.println("bookRegister SQL오류");
+		}
+		req.setAttribute("book", book);
 		
 		//forwarding
 		RequestDispatcher dispatcher= req.getRequestDispatcher("book/result.jsp");
