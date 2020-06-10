@@ -9,25 +9,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<b><%=request.getParameter("name") %>님이 접속하셨습니다.</b><p>
-	
+	<%
+		if(request.getParameter("id")!=null){
+			out.println(request.getParameter("id")+"님이 회원으로 등록하셨습니다.");
+		}
+	%>
 	<hr>
-	
 	<h2>전체 카페 회원 명단</h2>
 	<table>
 		<tr>
-			<th>번호</th> <th>이름</th> <th>나이</th> <th>주소</th>
+			<th>번호</th> <th>아이디</th> <th>이름</th> <th>주소</th>
 		</tr>
 	<% 
-		
-		//List<MemberVO> list = (List<MemberVO>)application.getAttribute("list");
-		List<MemberVO> list = (List<MemberVO>)request.getAttribute("list");
+		List<MemberVO> list = (List<MemberVO>)request.getAttribute("members");
 		for(int i=0 ;i<list.size() ;i++){
 	%>
 		<tr>
-		<td><%=i+1 %></td> <td><%=list.get(i).getName()%></td>
-		<td><%=list.get(i).getAge()%></td>
-		<td><%=list.get(i).getAddr()%></td>
+		<td><%=i+1 %></td> <td><%=list.get(i).getId()%></td>
+		<td><%=list.get(i).getName()%></td> <td><%=list.get(i).getAddress()%></td>
 		</tr>
 		
 	<%

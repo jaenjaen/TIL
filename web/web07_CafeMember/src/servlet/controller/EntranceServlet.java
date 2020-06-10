@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -26,11 +27,11 @@ public class EntranceServlet extends HttpServlet {
     private ServletContext context;
 	
 	public void init() throws ServletException {
-		context = getServletContext();
+		/*context = getServletContext();
 		System.out.println("ServletContext의 주소: "+context);
 		
 		context.setAttribute("list", list);
-		System.out.println("ServletContext에 카페 입장명단을 바인딩합니다.*****");
+		System.out.println("ServletContext에 카페 입장명단을 바인딩합니다.*****");*/
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -43,6 +44,7 @@ public class EntranceServlet extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
+		req.setAttribute("list", list);
 		PrintWriter out = res.getWriter();
 		
 		String name = req.getParameter("name");
@@ -61,8 +63,13 @@ public class EntranceServlet extends HttpServlet {
 		out.println(name+"님이 카페에 입장하셨습니다.<p>");
 		System.out.println(name+" 카페 입장");
 		
-		out.println("<a href=viewMember.jsp?name="+name+"> Member보기로 이동합니다. </a>");
+
+		//out.println("<a href=viewMember.jsp?name="+name+"> Member보기로 이동합니다. </a>");
 		
+		RequestDispatcher rdp = req.getRequestDispatcher("viewMember.jsp");
+		rdp.forward(req, res); // 페이지 이동
+		
+		//out.println("페이지 이동시켰습니다."); forward로 이동하면 제어권이 다시 돌아오지 않음
 		out.close();
 	}
 
