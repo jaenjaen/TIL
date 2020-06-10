@@ -97,5 +97,68 @@ public class BookDAOimpl implements BookDAO {
 		}
 		return books;
 	}
+	
+	public ArrayList<BookVo> search(String sort,String word) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BookVo> books = new ArrayList<BookVo>();
+		String query = "";
+		
+		try {
+			conn = getConnection();
+			if(word.equals("title")){
+				query = "SELECT * FROM book WHERE title LIKE ?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, "%"+word+"%");
+			}
+			else if(word.equals("publisher")) {
+				query = "SELECT * FROM book WHERE publisher LIKE ?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, "%"+word+"%");
+				
+			}
+			else if(word.equals("price")) {
+				query = "SELECT * FROM book WHERE price LIKE ?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, "%"+word+"%");
+				
+			}
+			else {
+				query = "SELECT * FROM book WHERE title LIKE ? OR "
+						+ "publisher LIKE ? OR price LIKE ?";
+				ps = conn.prepareStatement(query);
+				ps.setString(1, "%"+word+"%");
+				ps.setString(2, "%"+word+"%");
+				ps.setString(3, "%"+word+"%");
+			}
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				books.add(new BookVo(rs.getString("isbn"), rs.getString("title"), 
+						rs.getString("catalogue"),rs.getString("nation"),
+						rs.getDate("publish_date"), rs.getString("publisher"),
+						rs.getString("author"), rs.getInt("price"),
+						rs.getString("currency"), rs.getString("description")));
+			}
+			return books;
+		} finally {
+			closeAll(rs,ps,conn);
+		}
+		
+	}
+	
+	/*public static void main(String[] args) throws SQLException {
+		
+		BookDAOimpl dao = BookDAOimpl.getInstance();
+		
+		ArrayList<BookVo> books = new ArrayList<>();
+		books = dao.showAllbook();
+		for(BookVo book: books) {
+			System.out.println(book.toString());
+		}
+		
+	}*/
 
 }

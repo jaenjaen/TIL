@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h2 align="center">로그인에 실패하였습니다.</h2>
-	<b><a href='login.html'>다시 로그인하기</a></b>
+	<b><a href='login.jsp'>다시 로그인하기</a></b>
 </body>
 </html>

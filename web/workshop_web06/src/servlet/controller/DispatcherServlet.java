@@ -1,6 +1,5 @@
 package servlet.controller;
 
-import java.awt.print.Book;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -32,7 +31,7 @@ public class DispatcherServlet extends HttpServlet {
 	}
 	
 	protected void doProcess(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String path = "login.html";
+		String path = "login.jsp";
 		
 		if(req.getParameter("command").equals("login")) {
 			path = login(req,res);
@@ -40,7 +39,7 @@ public class DispatcherServlet extends HttpServlet {
 			path = logout(req,res);
 		}else if(req.getParameter("command").equals("book")) {
 			path = book(req,res);
-		}else if(req.getParameter("command").equals("showallbook")) {
+		}else if(req.getParameter("command").equals("booklist")) {
 			path = showAllBook(req,res);
 		}else if(req.getParameter("command").equals("search")) {
 			path = search(req,res);
@@ -55,7 +54,7 @@ public class DispatcherServlet extends HttpServlet {
 
 
 	private String login(HttpServletRequest req, HttpServletResponse res) {
-		String path = "login.html";
+		String path = "login.jsp";
 		
 		String id= req.getParameter("id");
 		String pass= req.getParameter("pass");
@@ -81,7 +80,7 @@ public class DispatcherServlet extends HttpServlet {
 
 
 	private String logout(HttpServletRequest req, HttpServletResponse res) {
-		String path = "login.html";
+		String path = "login.jsp";
 		HttpSession session = req.getSession();
 		
 		if(session.getAttribute("vo")!=null) session.invalidate();
@@ -91,7 +90,7 @@ public class DispatcherServlet extends HttpServlet {
 
 
 	private String book(HttpServletRequest req, HttpServletResponse res) {
-		String path = "login.html";
+		String path = "login.jsp";
 		Date publish_date = null;
 		int price = 0;
 		
@@ -139,7 +138,7 @@ public class DispatcherServlet extends HttpServlet {
 
 
 	private String showAllBook(HttpServletRequest req, HttpServletResponse res) {
-		String path = "login.html";
+		String path = "login.jsp";
 		BookDAOimpl dao = BookDAOimpl.getInstance();
 		ArrayList<BookVo> books = new ArrayList<>();
 		
@@ -150,12 +149,25 @@ public class DispatcherServlet extends HttpServlet {
 			System.out.println("showAllbook sql 오류");
 		}
 		req.setAttribute("books", books);
-		path = "book/showAllBook.jsp";
+		path = "book/bookList.jsp";
 		return path;
 	}
 	
 	private String search(HttpServletRequest req, HttpServletResponse res) {
-		String path = "login.html";
+		String path = "login.jsp";
+		
+		String sort = req.getParameter("sort");
+		String word = req.getParameter("word");
+		BookDAOimpl dao = BookDAOimpl.getInstance();
+		ArrayList<BookVo> books = new ArrayList<>();
+		
+		try {
+			books = dao.search(sort, word);
+			req.setAttribute("books", books);
+			path = "book/bookList.jsp";
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return path;
 	}
 
