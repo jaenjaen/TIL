@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var xhr;
+	function startRequest() {//요청
+		xhr = new XMLHttpRequest(); // 자바스크립트 내장객체 비동기 통신을 위해서는 필요 이의 필드와 메소드를 통해 비동기통신 진행
+		//alert(xhr.readyState);
+		
+		xhr.onreadystatechange = callback;
+		//alert(xhr.readyState);//비동기통신의 단계를 알려줌
+		//요청을 받을 서블릿 쓰기
+		xhr.open("get","CountServlet?id=ajax&&pass=1212",true); //true(비동기 통신 하겠다는 뜻)가 default
+		//alert("xhr open...");
+		
+		xhr.send(null); //이때 서버로 날라감.. 실질적인 요청이 들어감 Get방식이기때문에 null임(갖고 갈 객체가 없어서)
+	}
+	function callback() {//웅답에 해당하는 로직을 담는 메소드
+		//조건 붙여서 받아야함 readyState == 4 && status==200일때만 받아야함
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				var text = xhr.responseText;
+				document.getElementById("resultView").innerHTML = "<H4><font color=blue>"+text+"</font></b>";
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+<h2>Show Count</h2>
+<input type="button" value="count 증가" onclick='startRequest()'>
+<p></p>
+<span id='resultView'>
+</span>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script> //자바스크립트는 프론트 전문 기술은 Server에서 encoding안됨
+	var xhr;
+	var nick;
+	
+	function startRequest(){
+		nick = document.frm.nick
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = callback;
+		xhr.open("get","CountServlet?nick="+encodeURI(encodeURIComponent(nick.value)));
+		
+		xhr.send(null);
+	}
+	function callback() {
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				document.getElementById("resultView").innerHTML = "<font size=5 color=orange>"+decodeURI(xhr.responseText)+"</font>";
+			}
+		}else{//ready 2,3
+			document.getElementById("resultView").innerHTML ="<img src=img/a.gif>";
+		}
+		nick.value="";
+		nick.focus();
+	}
+</script>
+</head>
+<body>
+	<h2>Encoding 처리하기</h2>
+	<form name='frm'>
+		닉네임: <input type='text' name='nick'>
+		<input type='button' value='닉네임 보내기' onclick='startRequest()'>
+	</form>
+	
+	<div id='resultView'></div>
+</body>
+</html>
