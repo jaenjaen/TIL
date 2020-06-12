@@ -16,7 +16,7 @@ class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 	<property name="suffix" value=".jsp" />
 </bean>
 
-<bean name="/find.do" class="controller.FindController"/>
+<bean name="/find.do" class="servlet.controller.FindController"/>
 </beans>
 
 
