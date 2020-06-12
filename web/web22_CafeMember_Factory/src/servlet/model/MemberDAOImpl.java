@@ -173,7 +173,7 @@ public class MemberDAOImpl implements MemberDAO{
 	
 		try {
 			conn = getConnection();
-			String query = "SELECT id FROM member WHERE id=?";
+			String query = "SELECT * FROM member WHERE id=?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, id);
 			rs = ps.executeQuery();

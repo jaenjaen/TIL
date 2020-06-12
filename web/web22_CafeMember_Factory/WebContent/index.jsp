@@ -20,7 +20,7 @@
  	<c:choose>
 	<c:when test="${!empty vo}">
  		<a href="logout.do" >로그 아웃</a><br>
-		<a href="allmember.do" >전체 회원 보기</a><br>
+		<a href="memberlist.do" >전체 회원 보기</a><br>
  		<a href="update.jsp" >회원 정보 수정</a><br>
 	</c:when>
 	<c:otherwise>
