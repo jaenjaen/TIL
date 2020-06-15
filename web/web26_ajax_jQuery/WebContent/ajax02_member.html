@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+		/* $('#send').one('click',function() { */
+		$('#send').click(function() {
+			$.ajax({
+				type:"post",
+				url:"http://localhost:8888/member.xml",
+				dataType:"xml", //응답될때의 데이터 타입 지정 가능 주로 생략하지만 json일때는 써줌(xml,text,json 가능)
+				
+				success:function(result){
+				var str ='';
+				$(result).find('member').each(function(idx,item) {
+						var id = $(this).find('id').text();
+						var name = $(this).find('name').text();
+						var addr = $(this).find('address').text();
+						
+						str +='<tr>';
+						str +='<td>'+id+'</td>';
+						str +='<td>'+name+'</td>';
+						str +='<td>'+addr+'</td>';
+						str +='</tr>';
+					});//~each
+					
+					//기존 데이터를 지우고 붙인다. (gt: grater then이라는 뜻으로 기준보다 큰놈 <->lt(less then))
+					$("#table tr:gt(0)").remove();
+					//table에 붙임
+					$('#table').append(str);
+				},//callback
+					error:function(err){
+						alert("오류발생!"+err);	
+					}
+			})//~ajax
+		})//~click
+	})//~function
+</script>
+</head>
+<body>
+	<h2>**********공공데이터 가져오기**********</h2>
+	<a href='#' id='send'>XML Data읽어들이기</a>
+	<table border='2' id='table' width='60%'>
+		<tr>
+			<td> 아이디 </td><td> 이름 </td><td> 주소 </td>
+		</tr>
+	</table>
+</body>
+</html>

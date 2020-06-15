@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+		$('#ajaxBtn').click(function() {
+			var id= $('#id').val();
+			var pass= $('#pass').val();
+			$.ajax({//httprequest객체생ㅇ성
+				//요청
+				type:"post",
+				url:"jQueryAjax",
+				data:"id="+id+"&&pass="+pass,
+				//응답
+				success:function(result){
+					$('#resultView').html(result).css({
+						'background': 'yellow',
+						'color': 'red',
+						'font-weight': 'bold'
+					});
+				}//~callback
+			});//~ajax
+		});//~click
+	});//~reday function
+</script>
+</head>
+<body>
+	<h2>Ajax Using jQuery</h2>
+	ID<input type='text' name='userId' id='id'><br><br>
+	PW<input type="password" name='userPass' id='pass'><br><br>
+	<input type='button' value='ajaxBtn' id='ajaxBtn'>
+	<span id='resultView'></span>
+</body>
+</html>
