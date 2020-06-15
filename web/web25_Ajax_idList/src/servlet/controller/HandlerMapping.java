@@ -12,8 +12,12 @@ public class HandlerMapping {
 		
 		if(command.equals("idList.do")) {
 			controller = new IdListController();
-			System.out.println("IdListController 생성됨");
-		}else {
+			System.out.println("IdListController 생성됨");	
+		}else if(command.equals("idCheck.do")) {
+			controller = new IdCheckController();
+			System.out.println("IdCheckController 생성됨");
+		}
+		else {
 			controller = new FindController();
 			System.out.println("FindController 생성됨");
 		}

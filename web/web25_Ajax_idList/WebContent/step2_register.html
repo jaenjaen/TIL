@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<script type="text/javascript">
+	var xhr;
+	function startRequest(){
+		var id = document.getElementById("id").value;
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = callback;
+		xhr.open("get","idCheck.do?id="+id);
+		xhr.send(null);
+	}
+	
+	function callback() {
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				if((xhr.responseText)==("true")){
+					document.getElementById("idView").innerHTML
+					="<font color = red size=5> 사용 불가 </font>";
+				}
+				else{
+					document.getElementById("idView").innerHTML
+					="<font color = blue size=5> 사용 가능 </font>";
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<h3>회원가입</h3>
+	<form action="register.do" name="registerForm" >
+	ID : <input type="text" name="id" id='id' required="required">
+		 <input type="button" value="중복확인" onclick="startRequest()">
+		 <span id = 'idView'></span><br><br>
+	PASSWORD : <input type="password" name="password" required="required"><br><br>
+	NAME : <input type="text" name="name" required="required"><br><br>
+	ADDRESS : <input type="text" name="address" required="required"><br><br>
+	
+	<input type="submit" value="member register">
+	</form>
+</body>
+</html>
