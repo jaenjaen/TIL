@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var xhr;
+	function startRequest() {
+		uid = document.frm.userId.value;
+		//요청관련 로직
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = callback;
+		xhr.open("get","AjaxServlet?id="+uid);
+		xhr.send(null);
+	}
+	
+	function callback() {
+		//응답관련 로직
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				document.getElementById('resultView').innerHTML = "<font color=blue size=5>"+xhr.responseText+"</font>";
+				
+				document.frm.userId.value="";
+				document.frm.userId.focus();
+			}
+			else{
+				document.getElementById('resultView').innerHTML 
+				="<img src=img/a.gif>";
+			}
+		}
+		
+	}
+</script>
+</head>
+<body>
+<h2>비동기 통신으로 id 전송하기</h2>
+<form name="frm">
+	아이디:<input type='text' name='userId'>
+	<input type='button' value='아이디 전송하기' onclick="startRequest()">
+	<div id = 'resultView'></div>
+</form>
+</body>
+</html>
