@@ -1,24 +1,45 @@
 package encore;
 
-
+import java.util.HashMap;
 
 
 public class Count {
 
 	public String execute(String book) {
 		String word = "";
-
-
-		// 구현하세요.
+		String[] tmp = null;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		int max = 0;
 		
 		//소문자화
-		//공백으로 잘라서
-		//어레이 넣기
+		book = book.toLowerCase().replace(".", "").replace("?", "").replace("-", "");
 		
+		//공백으로 잘라서 어레이 넣기
+		tmp = book.split(" ");
 		
+		//for돌면서
+		for(int i=0; i<tmp.length;i++) {
+			//key-value넣고 찾으면 value++
+			if(map.containsKey(tmp[i])) {
+				map.put(tmp[i], map.get(tmp[i]) + 1);
+			}else { map.put(tmp[i], 1);}
+		}
 		
-		
-		
+		//value젤 높은 key값 리턴
+		for(String key: map.keySet()) {
+			if(map.get(key)>max) {
+				max = map.get(key);
+				word = key;
+			}
+			//만약 같은 수라면
+			//아스키코드 비교해서 제일 작은 값 
+			if(map.get(key) == max && !word.equals("")) {
+				if(word.charAt(0) > key.charAt(0)) {
+					word = key;
+					max = map.get(key);
+				}
+			}
+		}
 		
 		return word;
 	}
