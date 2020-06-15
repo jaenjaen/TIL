@@ -3,10 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<!-- id가 3자리 미만면 "아이디는 3자 이상이여야 합니다."라는 메세지를 띄우고
+	 아이디가 3자리 이상이면: 사용가능 아이디 | 사용불가 아이디 -->
 <script type="text/javascript">
 	var xhr;
+	var resultSpan;
+	
 	function startRequest(){
 		var id = document.getElementById("id").value;
+		resultSpan = document.getElementById("idView");
+		if(id.length <3){
+			resultSpan.innerHTML
+			="<font color = red> id는 3자이상 입력되어야 합니다. </font>";
+			return;
+		}
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = callback;
 		xhr.open("post","idCheck.do");
@@ -18,25 +28,23 @@
 		if(xhr.readyState==4){
 			if(xhr.status==200){
 				if((xhr.responseText)==("true")){
-					document.getElementById("idView").innerHTML
+					resultSpan.innerHTML
 					="<font color = red> 사용 불가 </font>";
-					document.getElementById("id").value="";
 					document.getElementById("id").focus();
 				}
 				else{
-					document.getElementById("idView").innerHTML
+					resultSpan.innerHTML
 					="<font color = blue> 사용 가능 </font>";
 				}
 			}
-		}
+		} 
 	}
 </script>
 </head>
 <body>
 <h3>회원가입</h3>
 	<form action="register.do" name="registerForm" >
-	ID : <input type="text" name="id" id='id' required="required">
-		 <input type="button" value="중복확인" onclick="startRequest()">
+	ID : <input type="text" name="id" id='id' required="required" onkeyup="startRequest()">
 		 <span id = 'idView'></span><br><br>
 	PASSWORD : <input type="password" name="password" required="required"><br><br>
 	NAME : <input type="text" name="name" required="required"><br><br>
