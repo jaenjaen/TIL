@@ -1,6 +1,11 @@
 package encore;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Kickboard {
@@ -11,57 +16,35 @@ public class Kickboard {
 			
 			int x=0;
 			int y=0; //좌표의 위치
-			int x1=x;
-			int y1=y;
 			
 			//scanner로부터 n*m행렬 생성
 			int n = sc.nextInt();
 			int m = sc.nextInt();
 			int [][] arr = new int[n][m];
 			sc.nextLine(); //nextInt가 엔터키를 읽지 않기때문에 안하면 빈칸+3열이 생김)
+			boolean[][] visit = new boolean[n][m];
 			
 			for(int i=0; i<arr.length;i++) {
 				for(int j=0;j<arr[i].length;j++) {
 					arr[i][j] = sc.nextInt();
-					System.out.println(arr[i][j]);
 				}
 			}
-			//상하좌우 비교해  작은값으로 이동
-			int min = arr[x][y];
+			//상하좌우 비교해  작은값으로 이동(BFS)
+			
+			//이동하며 넣을 queue
+			HashMap<String, Integer> tmp = new HashMap<String, Integer>();
 			while(x!=3 && y!=4) {
-				x1 = x;
-				y1 = y;
-				//위로 이동 불가 || 옆(상,하)으로 이동불가 || 아래로 이동불가
-				//상
-				if(arr[x-1][y]<arr[x][y] && arr[x-1][y]<min) {
-					min = arr[x-1][y];
-					x1 = x-1;
-				}
-				//하
-				if(arr[x+1][y]<arr[x][y] && arr[x+1][y]<min) {
-					min = arr[x+1][y];
-					x1 = x+1;
-				}
-				//좌
-				if(arr[x][y-1]<arr[x][y] && arr[x][y-1]<min) {
-					min = arr[x][y-1];
-					y1 = y-1;
-				}
-				//우
-				if(arr[x][y+1]<arr[x][y] && arr[x][y+1]<min) {
-					min = arr[x][y-1];
-					y1 = y+1;
-				}
-				//이동한 값이 n,m값이면 이동 종료 하고 result++;(3,4)
+				int min = arr[x][y];
+				tmp.put(x+","+y,arr[x][y]);
+				if (x-1>0 && visit[x-1][y]==false) tmp.put(x-1+","+y,arr[x-1][y]);
+				if (y-1>0 && visit[x][y-1]==false) tmp.put(x+","+(y-1),arr[x][y-1]);
+				if (x+1<4 && visit[x+1][y]==false) tmp.put(x+1+","+y,arr[x+1][y]);
+				if (y+1<5 && visit[x][y+1]==false) tmp.put(x+","+(y+1),arr[x][y+1]);
+				
 			}
 			
-			
-			
-			
-			
-			
-			
-			
+			tmp.get(0);
+			tmp.remove(0);
 			return result;
 		}
 
