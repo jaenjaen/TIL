@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+		$('#jsonBtn').click(function() {
+			$.ajax({
+				type:'post',
+				url:'JsonAjax',
+				dataType:'json',
+				
+				success:function(data){
+					$('#resultView').html(data.banana);	
+				}//~callback
+			});//~ajax
+		});//~click
+	});//~fun
+</script>
+</head>
+<body>
+	<input type='button' value='jsonBtn' id='jsonBtn'>
+	<span id='resultView'></span>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+		$('#ajaxBtn').click(function() {
+			$.ajax({
+				//비동기 안에선 alert안뜸
+				type:'post',
+				url:'HelloAjaxServlet',
+				data:'name=encoreAjax',
+				//dataType:'text',
+				
+				success:function(data){
+					alert(data);
+				},//callback
+				error:function(e){
+					alert("응답 시간이 지연되고 있습니다.");
+				},//error
+				timeout:1000 // 1초동안 서버로 부터 응답이 없으면 에러 발생시킴 (응답 대기시간 지정)
+				
+			});//~ajax
+		});//~click
+	});//~function
+</script>
+</head>
+<body>
+	<input type='button' id='ajaxBtn' value='ajaxBtn'>
+</body>
+</html>

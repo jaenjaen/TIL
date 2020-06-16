@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+		$('#player').change(function() {
+			if($('#player').val()==''){
+				$('#resultView').html("");
+				alert("선수를 선택하세요");
+				return;
+			}
+			$.ajax({
+				type:'post',
+				url:'AddressAjax',
+				data:'name='+$('#player').val(),
+				
+				success:function(data){
+					$('#resultView').html(data);
+				}
+			});//~ajax
+		});//~change
+	});//~function
+</script>
+</head>
+<body>
+	<select id='player'>
+		<option value=''>-----야구선수-----</option>
+		<option>이용규</option>
+		<option>김태균</option>
+		<option>류현진</option>
+		<option>푸이그</option>
+		<option>오타니</option>
+		<option>커쇼</option>
+	</select>
+	<span id='resultView'></span>
+</body>
+</html>

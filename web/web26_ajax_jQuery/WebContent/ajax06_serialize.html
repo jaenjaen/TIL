@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$(function() {
+		$('#regBtn').click(function() {
+			$.ajax({
+				type:'post',
+				url:'SerialAjax',
+				data:$('#frm').serialize(),
+				
+				success:function(data){
+					$('#regView').html(data).css({
+						'background':'yellow',
+						'font-weight':'bold',
+						'color':'blue'
+					})//~css
+				}//~callback
+			});//~ajax
+		})//~reg click
+		
+		$('#id').keyup(function() {
+			/* id가 4~8자 사이의 값만 허용
+			이 안에 있는 값이 아니면 메세지 띄움*/
+			if($(this).val().length <4 ||
+					$(this).val().length >8){
+				$('#idCheckView').html("4~8사이의 값만 허용").css('color','red');
+				return;
+			}
+			/* id 4~8자 사이의 값? ajax*/
+			$.ajax({
+				type:'post',
+				url:'SerialAjax',
+				data:$('#frm').serialize(),
+				
+				success:function(data){
+					if(data=='false') $('#idCheckView').html("사용가능").css('color','blue')
+					else $('#idCheckView').html("사용불가").css('color','red')
+					
+				}//~callback
+			});//~ajax
+		});//~keyup
+	});//~fun
+</script>
+</head>
+<body>
+	<form action="SerialAjax" id="frm" >
+	<h2>Register Form</h2>
+		Name <input type='text' name='name'><br>
+		Address <input type='text' name='addr'><br>
+		<input type="hidden" name='command' value='register'><p/>
+		<input type="button" value='가입' id='regBtn'>
+	</form>
+	<hr>
+	<div id='regView'></div>
+	<hr>
+	<form action="SerialAjax" id="frm">
+	<h2>MemberId Check Test</h2>
+		Id <input type='text' name='id' id='id'><br>
+		<span id='idCheckView'></span>
+		<input type='hidden' name='command' value='idcheck'>
+	</form>
+</body>
+</html>
