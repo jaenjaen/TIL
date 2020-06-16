@@ -149,15 +149,42 @@ public class BookDAOimpl implements BookDAO {
 		
 	}
 	
+	public BookVo bookInfo(String title) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BookVo book = null;
+		
+		try{
+			conn=getConnection();
+			String query = "SELECT * FROM book WHERE title=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, title);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				book = new BookVo(rs.getString("isbn"),
+					  	rs.getString("title"), rs.getString("catalogue"),
+					  	rs.getString("nation"), rs.getDate("publish_date"),
+					  	rs.getString("publisher"),rs.getString("author"),
+					  	rs.getInt("price"),rs.getString("currency"),rs.getString("description"));
+				
+				}
+
+			System.out.println(book);
+			return book;
+		}
+		finally {
+			closeAll(rs,ps,conn);		
+		}
+		
+	}
+	
 	/*public static void main(String[] args) throws SQLException {
 		
 		BookDAOimpl dao = BookDAOimpl.getInstance();
 		
-		ArrayList<BookVo> books = new ArrayList<>();
-		books = dao.showAllbook();
-		for(BookVo book: books) {
-			System.out.println(book.toString());
-		}
+		System.out.println(dao.bookInfo("두잇!안드로이드"));
 		
 	}*/
 

@@ -44,6 +44,9 @@ public class DispatcherServlet extends HttpServlet {
 		}else if(req.getParameter("command").equals("search")) {
 			path = search(req,res);
 		}
+		else {
+			path = bookInfo(req,res);
+		}
 		
 		req.getRequestDispatcher(path).forward(req, res);
 	}
@@ -51,8 +54,6 @@ public class DispatcherServlet extends HttpServlet {
 
 	
 	
-
-
 	private String login(HttpServletRequest req, HttpServletResponse res) {
 		String path = "login.jsp";
 		
@@ -168,6 +169,24 @@ public class DispatcherServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return path;
+	}
+	
+	private String bookInfo(HttpServletRequest req, HttpServletResponse res) {
+		String path="login.jsp";
+		String title = req.getParameter("title");
+		BookDAOimpl dao = BookDAOimpl.getInstance();
+		
+		try {
+			BookVo book = dao.bookInfo(title);
+			String info = "책 상세정보 출력 - 제목: "+book.getTitle()+", 출판사: "+book.getPublisher()+", 저자: "+book.getAuthor();
+			req.setAttribute("info", info);
+			path="book/bookinfo.jsp";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		return path;
 	}
 

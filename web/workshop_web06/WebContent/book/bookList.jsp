@@ -25,7 +25,33 @@
     form{
    		text-align: right;
     }
+    .title{
+    	color:blue;
+    	text-decoration: underline;
+    }
+    #bookInfoView{
+    	text-align: center;
+    	color: red;
+    }
 </style>
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script>
+	$(function() {
+		$('.title').hover(function() {
+			$.ajax({
+				type:'post',
+				url:'front.do?command=bookInfo',
+				data:'title='+$(this).text(),
+				
+				success:function(data){
+					$('#bookInfoView').html(data);
+				}//~callback
+			});//~ajax
+		},function(){
+			$('#bookInfoView').html("");
+		})//~hover
+	});//~fun
+</script>
 </head>
 <body>
 	<c:choose>
@@ -54,13 +80,15 @@
 					<c:forEach items="${books}" var="book">
 						<tr>
 							<td>${book.isbn}</td>
-							<td>${book.title}</t/d>
+							<td class='title'>${book.title}</td>
 							<td>${book.catalogue}</td>
 							<td>${book.author}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<br>
+			<div id='bookInfoView'></div>
 			<br>
 			<a href="book/book.jsp" align='center'>도서 등록</a>
 		</c:when>
