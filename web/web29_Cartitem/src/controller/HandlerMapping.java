@@ -18,9 +18,6 @@ public class HandlerMapping {
 		}else if(command.contains("itemdetail.do")){
 			controller = new ItemDetailController();
 			System.out.println("ItemDetailController() 반환");
-		}else if(command.contains("cookie.do")){
-			controller = new CookieController();
-			System.out.println("CookieController() 반환");
 		}
 		return controller;
 	}

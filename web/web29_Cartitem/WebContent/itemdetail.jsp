@@ -16,6 +16,7 @@
 	footer{ clear:both; text-align:center;}
 </style>
 <script>
+//on은 미래에 있는 기능을 사용하기 위한것.
 	$(function() {
 		$('#wishlist').click(function(){
 			var key = 0;
@@ -25,6 +26,7 @@
 			vals.push("${item.url}");
 			vals.push("${item.name}");
 			vals.push(${item.price});
+			vals.push(1);
 			
 			if(window.localStorage){
 				//alert(key);
@@ -39,7 +41,9 @@
 			else{
 				alert("본 환경은 장바구니를 지원하지 않습니다.");
 			}
-		});//~click
+		});//~add click
+		
+		
 	})//~ready
 </script>
 </head>
@@ -48,7 +52,7 @@
 	<h2 align='center'>${item.name}의 정보</h2>
 	<div id='bar'>
 		조회수:${item.count}&nbsp;&nbsp;
-		<a id='wishlist' href='#'>장바구니 담기</a>
+		<button id='wishlist'>장바구니 담기</button> <button onclick="location.href='wishlist.jsp'">장바구니 확인</button>
 	</div>
 	<div id="fDesc">
 		<div id='imgPlace'><img src="${item.url}"></div>
@@ -60,6 +64,6 @@
 			</p>
 		</div>
 	</div>
-	<footer><a href='cookie.do?id=${item.itemNumber}'>상품보기</a></footer>
+	<footer><a href='itemlist.do'>상품보기</a></footer>
 </body>
 </html>

@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +24,13 @@ public class ItemDetailController implements Controller {
 			dao.countView(id);
 			//받아오기
 			item = dao.getItem(id);
+			
+			//오늘 본 상품 정보 추가
+			//1) 쿠키 + 2)브라우저로보내기
+			Cookie cookie = new Cookie("fruitshop"+id, item.getUrl());
+			cookie.setMaxAge(24*60*60);
+			res.addCookie(cookie);
+			
 			path = "itemdetail.jsp";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

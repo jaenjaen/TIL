@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <title>Fruit Total List 1.</title>
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
- <script>
- 	$(function{
-		
-	})//~ready
- </script>
 </head>
 <body>
 	<h2 align='center'>Fruit Total List 1.</h2>
@@ -27,6 +22,16 @@
 			</c:forEach>
 		</tr>
 	</table>
-	<div id='fruitView'></div>
+	<c:if test="${!empty fruits}">
+		<div id='fruitView' align='center'><h2><font color='purple'>오늘 본 상품 정보</font></h2>
+			<table>
+				<tr>
+					<c:forEach items='${fruits}' var='item'>
+						<td><img src='${item}' width='100px' height='100px'></td>
+					</c:forEach>
+				</tr>
+			</table>
+		</div>
+	</c:if>
 </body>
 </html>

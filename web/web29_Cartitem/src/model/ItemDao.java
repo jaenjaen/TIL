@@ -105,4 +105,4 @@ public class ItemDao {
 			closeAll(ps, conn);
 		}
 	}
-}
+}//단위테스트는 드라이버 매니저를 사용해서 돌려야 DB연결됨
