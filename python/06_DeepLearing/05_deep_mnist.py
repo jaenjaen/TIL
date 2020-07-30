@@ -24,7 +24,7 @@ input_size = 784  #28*28*1 MNIST 사이즈
 hidden_size = 500 #hiddenLayer unit의 개수
 num_classes = 10 #최종적으로 10가 출력
 num_epochs = 5
-batch_size = 100
+batch_size = 100 #computation cost에 영향을 미침 (사실 5만개씩 못 읽음)
 learning_rate = 0.01
 
 train_dataset= torchvision.datasets.MNIST(root='../../data/',
@@ -39,6 +39,7 @@ test_dataset = torchvision.datasets.MNIST(root='../../data/',
 
 '''
 2단계에 걸쳐서 데이타셋을 로딩해온다.
+batch_size때문임!
 DataLoader 내부적으로 멀티쓰레딩 방식으로 랩핑되어 있어서 클래스를 빠르게 로더
 한번 할 때 마다, 앞에서 정해준 것 처럼 100개씩 로딩한다.
 이 때, shuffle = True하게 되면 로딩할 때 마다, 데이타의 순서를 바꿔서
@@ -46,7 +47,11 @@ DataLoader 내부적으로 멀티쓰레딩 방식으로 랩핑되어 있어서 �
 Test때는 필요 없음.
 '''
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset,
-                                           batch_size=batch_size,
+                                           batch_size=batch_size, #computation costing말고 어떤 영향을 미치는가?
+                                           #들어온 문제들을 batch_size만큼 나눈다음에 공부하고 테스트를 보는것이고
+                                           #batch_size가 없으면 들어온 데이터를 다 받은 다음 학습을 마치고 그다음 테스트를 보는 것
+                                           # 6만번에 한번 테스트? or 100번씩 600번해서 테스트 -> 정확도가 높아진다.
+                                           # 배치사이즈 무조건 씀.
                                            shuffle=True)
 
 test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
@@ -71,7 +76,7 @@ class NeuralNet(nn.Module):
 
 """### 인스턴스화"""
 
-model = NeuralNet(input_size,hidden_size,num_classes).to(device)
+model = NeuralNet(input_size,hidden_size,num_classes).to(device) #forward 선언
 loss_function = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)
 
@@ -83,7 +88,7 @@ for epoch in range(num_epochs): #5번
     labels = labels.to(device)
 
     #forwarding
-    preds = model(images)
+    preds = model(images) #forward 시작
     loss = loss_function(preds,labels) #두 라벨을 비교
 
     #Backward
@@ -114,7 +119,7 @@ FCN -- 1차원으로 주욱 늘린다.  <-> CNN은 늘리지 않음 속도는 CN
 FCN은 초창기 모델이라 잘 사용하지 않고, 부분적으로 사용한다(CNN에서 사용하는데 CNN에서 여러가지 기법을 사용한 뒤 맨 마지막에 FCN으로 output을 분류함.)
 '''
 
-with torch.no_grad(): # no_grad는 학습할 필요가 없을 때 넣어주는 것(== Backward 하지 않음 == (편)미분 안함)
+with torch.no_grad(): # no_grad는 학습할 필요가 없을 때 넣어주는 것(== Backward 하지 않음 == (편)미분 안함 == gradient대상이 아님)
   correct = 0
   total = 0
   
@@ -127,10 +132,11 @@ with torch.no_grad(): # no_grad는 학습할 필요가 없을 때 넣어주는 �
     #값을 찾을 때 벨류와 인덱스를 함께 리턴해야함, 근데 인덱스==라벨인 경우가 있음
     #이런 경우 항상쓰던 entropy나 MSE를 사용하지 않는다.( 다양한 방법이 있다는 소리 )
 
+    #softmax를 사용하지 않겠다는 뜻임.
     _,predicted = torch.max(outputs.data,1) #max는 두개의 값을 return 함 -> 80,3 근데 80 안필요해서 앞에 거 버리기위해 _를 씀 (return되나, 사용하지 않는다.)
 
     total += labels.size(0)
-    correct += (predicted == labels).sum().item()
+    correct += (predicted == labels).sum().item() #예측한 것들의 합산
   print('Accuracy of Fully Connected Networks images: {}%'.format(100* correct/total))
 
 #모델 저장
