@@ -13,7 +13,7 @@ import spring.service.dice.play.Player02;
 public class DiceTestAppUseSpring {
 	public static void main(String[] args) {
 		BeanFactory factory = 
-				new XmlBeanFactory(new FileSystemResource(" "));
+				new XmlBeanFactory(new FileSystemResource("./src/main/resources/config/diceservice.xml"));
 		//xml 하나씩 하면서 이곳에서 하나씩 테스트한다...
 		Player02 player01 = (Player02)factory.getBean("player01");
 		player01.playDice(3);

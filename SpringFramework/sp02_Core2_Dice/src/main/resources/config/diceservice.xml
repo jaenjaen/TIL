@@ -3,6 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	<bean id="diceA" class="spring.service.dice.impl.DiceAimpl"/>
+	<bean id="diceB" class="spring.service.dice.impl.DiceBimpl"/>
+	<bean id="diceC" class="spring.service.dice.impl.DiceCimpl"/>
 	
+	<bean id="player01" class="spring.service.dice.play.Player02">
+		<constructor-arg name="dice" ref="diceC"></constructor-arg>
+	</bean>
+	
+	<bean id="player02" class="spring.service.dice.play.Player02">
+		<property name="dice" ref="diceA"></property>
+	</bean>
+	
+	<bean id="player03" class="spring.service.dice.play.Player02">
+		<constructor-arg name="dice" ref="diceB"></constructor-arg>
+	</bean>
+	
+	<bean id="player04" class="spring.service.dice.play.Player02">
+		<property name="dice" ref="diceC"></property>
+	</bean>
 
 </beans>

@@ -15,10 +15,10 @@ public class Player02 {
 		this.dice = dice;
 	}
 	///Method (getter/setter)
-	public Dice getDiceA() {
+	public Dice getDice() {
 		return dice;
 	}
-	public void setDiceA(Dice dice) {
+	public void setDice(Dice dice) {
 		this.dice = dice;
 	}
 	public int getTotalValue() {
