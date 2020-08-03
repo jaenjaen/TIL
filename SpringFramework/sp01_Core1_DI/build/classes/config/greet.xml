@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- greet1이라는 이름으로 Greet 생성 -->
+	<bean id="greet1" class="spring.service.greet.Greet"/>
+	
+	<!-- greet2이라는 이름으로 Greet 생성, 생성자로 값 주입 Hello, Spring -->
+	<bean id="greet2" class="spring.service.greet.Greet">
+		<constructor-arg value="Hello Spring"/>
+	</bean>
+	
+	<!-- greet3이라는 이름으로 Greet 생성, Setter로 값 주입  Hello Spring DI! -->
+	<bean id="greet3" class="spring.service.greet.Greet">
+		<!-- greet3.setSetter() -->
+		<property name="message" value="Hello! Spring DI"/>
+	</bean>
+	
+	
+	<!-- API Bean String str = new String("스프링 빈 설정문서 만들기");-->
+	<bean id='str' class="java.lang.String">
+		<constructor-arg value="스프링 빈 설정문서 만들기"></constructor-arg>
+	</bean>
+	
+	<bean id='greet4' class="spring.service.greet.Greet">
+		<property name="message" ref="str"></property>
+	</bean>
+</beans>
