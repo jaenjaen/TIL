@@ -10,4 +10,10 @@
  		INSERT
  		INTO mysawon(id,pwd,name,age,hiredate) VALUES(#{id},#{pwd},#{name},#{age},curDate())
  	</insert>
+ 	<!-- list아니고 Generic이 들어감 -->
+ 	<select id="sawonList" resultType="mySawon">
+ 		SELECT num, id, name, age hiredate
+ 		FROM mysawon
+ 		ORDER BY num DESC
+ 	</select>
  </mapper>
