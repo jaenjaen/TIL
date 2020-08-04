@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- namespace 필수!! -->
+ <mapper namespace="mysawonMapper">
+ 	<!-- parameterType에 FQCN아니고 config에서 정한 Alias사용 -->
+ 	<insert id="sawonAdd" parameterType="mySawon">
+ 		INSERT
+ 		INTO mysawon(id,pwd,name,age,hiredate) VALUES(#{id},#{pwd},#{name},#{age},curDate())
+ 	</insert>
+ </mapper>
