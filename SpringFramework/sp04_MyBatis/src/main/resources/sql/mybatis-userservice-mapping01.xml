@@ -11,7 +11,7 @@
  
 <!-- SQL definition -->
 <!-- 컬럼명과 vo클래스의 필드명이 다를 때는 반드시 as 뒤에 필드명을 지정해야한다. Framework마다 다른데 mybatis는 바꿔줘야함 -->
-<mapper namespace="UserMapper">
+<mapper namespace="UserMapper01">
 	<!--
 		ㅇ Application 에서 User.getUserList id 로 아래의 SQL 을 참조 할 수 있다.    
 	 -->
@@ -20,12 +20,20 @@
 	 	 FROM users
 	 </select>
 	 
-	 <!-- 
-	 	입력(?) / 출력(?) 관리의 이해
-	 	- 아래의 query 수행 후 결과 resultType attribute 에 선언된 UserVO 객체 Field
-	 	  ( property )에 자동연결(?,자동 바인딩)
-	 	- SQL/Query 의 별칭(Alias)와 UserVO객체의 Field 의 변수이름이 동일한 것 확인.  
+	 <!-- value는 무조건 단순 파라미터 값 
+	 	 collection, 자바 라이브러리 클래스의 알리아스 사용 string, int, list, arraylist의 형태로 변경.
 	  -->
-
-	
+	 <select id="getUser" resultType="user" parameterType="string">
+	 	SELECT user_id as userId,user_name as userName,password as password,age as age ,grade as grade ,reg_date as regDate
+	 	FROM users
+	 	WHERE user_id = #{value}
+	 </select>
+	 
+	 <!-- parameter type에 VO가 들어오면 #{}getter를 사용한다
+	 	  VO가 들어오지 않으면 무조건 #{value} -->
+	 <select id="findUserId" resultType="string" parameterType="user">
+	 	SELECT user_name as userName
+	 	FROM users
+	 	WHERE user_id = #{userId} and password = #{password}
+	 </select>
 </mapper>

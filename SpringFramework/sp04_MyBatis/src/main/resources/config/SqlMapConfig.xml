@@ -2,7 +2,32 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- 1.properties 연결 -->
+	<properties resource="config/dbconn.properties"/>
 
-
+	<!-- 2.Vo연결 및 알리아스 지정 -->
+	<typeAliases>
+		<typeAlias type="ibatis.services.domain.User" alias="user"/>
+	</typeAliases>
 	
+	<!-- 3.DB Server정보 -->
+	<environments default="develop">
+		<environment id="develop">
+			<transactionManager type="JDBC"/>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="${jdbc.mysql.driver}"/>
+				<property name="url" value="${jdbc.mysql.url}"/>
+				<property name="username" value="${jdbc.mysql.username}"/>
+				<property name="password" value="${jdbc.mysql.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 4.Mapper -->
+	<mappers>
+		<mapper resource="sql/mybatis-userservice-mapping.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping02.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping03.xml"/>
+	</mappers>
 </configuration>

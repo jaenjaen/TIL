@@ -10,10 +10,15 @@
  -->
  
 <!-- SQL definition -->
-<mapper namespace="User">
+<!-- 컬럼명과 vo클래스의 필드명이 다를 때는 반드시 as 뒤에 필드명을 지정해야한다. Framework마다 다른데 mybatis는 바꿔줘야함 -->
+<mapper namespace="UserMapper">
 	<!--
 		ㅇ Application 에서 User.getUserList id 로 아래의 SQL 을 참조 할 수 있다.    
 	 -->
+	 <select id="getUserList" resultType="user">
+	 	 SELECT user_id as userId,user_name as userName,password as password,age as age ,grade as grade ,reg_date as regDate
+	 	 FROM users
+	 </select>
 	 
 	 <!-- 
 	 	입력(?) / 출력(?) 관리의 이해
