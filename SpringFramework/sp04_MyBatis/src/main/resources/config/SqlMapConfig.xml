@@ -4,7 +4,14 @@
 <configuration>
 	<!-- 1.properties 연결 -->
 	<properties resource="config/dbconn.properties"/>
-
+	
+	<!-- Oracle의 경우 null을 허용하지 않기 때문에 반드시 옵션을 추가해야 실행될 수 있다.
+		 Settings 태그의 위치와 NULL 값을 대문자로 입력해야한다.
+		 My SQL은 상관 X -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
 	<!-- 2.Vo연결 및 알리아스 지정 -->
 	<typeAliases>
 		<typeAlias type="ibatis.services.domain.User" alias="user"/>
@@ -29,5 +36,9 @@
 		<mapper resource="sql/mybatis-userservice-mapping01.xml"/>
 		<mapper resource="sql/mybatis-userservice-mapping02.xml"/>
 		<mapper resource="sql/mybatis-userservice-mapping03.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping05.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping07.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping08.xml"/>
+		<mapper resource="sql/mybatis-userservice-mapping10.xml"/>
 	</mappers>
 </configuration>
