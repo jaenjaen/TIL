@@ -2,8 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!-- 1.properties 연결 -->
-	<properties resource="config/dbconn.properties"/>
+	<!-- 1.properties 연결 주석으로 막은 건 단위테스트용-->
+	<!-- <properties resource="config/dbconn.properties"/>-->
 	
 	<!-- Oracle의 경우 null을 허용하지 않기 때문에 반드시 옵션을 추가해야 실행될 수 있다.
 		 Settings 태그의 위치와 NULL 값을 대문자로 입력해야한다.
@@ -19,8 +19,8 @@
 		<typeAlias type="ibatis.services.domain.User" alias="user"/>
 	</typeAliases>
 	
-	<!-- 3.DB Server정보 -->
-	<environments default="develop">
+	<!-- 3.DB Server정보 이거는 단위테스트용 usersercvice에서 돌아감 -->
+	<!-- <environments default="develop">
 		<environment id="develop">
 			<transactionManager type="JDBC"/>
 			<dataSource type="UNPOOLED">
@@ -30,7 +30,7 @@
 				<property name="password" value="${jdbc.mysql.password}"/>
 			</dataSource>
 		</environment>
-	</environments>
+	</environments> -->
 	
 	<!-- 4.Mapper -->
 	<mappers>
