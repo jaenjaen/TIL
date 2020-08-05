@@ -7,14 +7,16 @@
  -->
 
 <mapper namespace="UserMapper10">
-	<resultMap type="user" id="userSelectRM">
+
+	<!-- column을 VO의 이름으로  mapping해주는 역할을 한다 
+		<resultMap type="user" id="userSelectRM">
 		<result property="userId" column="user_id"/>
 		<result property="userName" column="user_name"/>
 		<result property="password" column="password"/>
 		<result property="age" column="age"/>
 		<result property="grade" column="grade"/>
 		<result property="regDate" column="reg_date"/>
-	</resultMap>
+	</resultMap> -->
 	
 	<sql id="select-users">
 		SELECT user_id, user_name,password,age,grade,reg_date
@@ -41,12 +43,12 @@
 	 </delete>
 	 
 	 <!-- 정적쿼리 -->
-	<select id="getUser" parameterType="user" resultMap="userSelectRM">
+	<select id="getUser" parameterType="user" resultType="user">
 		<include refid="select-users"></include>
 		where user_id = #{userid}
 	</select>
 	
-	<select id="getUserList" parameterType="user" resultMap="userSelectRM">
+	<select id="getUserList" parameterType="user" resultType="user">
 		<include refid="select-users"/>
 		<where>
 			<if test="userName != null">

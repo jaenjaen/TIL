@@ -9,7 +9,9 @@
 		 Settings 태그의 위치와 NULL 값을 대문자로 입력해야한다.
 		 My SQL은 상관 X -->
 	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- <setting name="jdbcTypeForNull" value="NULL"/> -->
+		<!-- resultmap대신에 사용하는것 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	
 	<!-- 2.Vo연결 및 알리아스 지정 -->
