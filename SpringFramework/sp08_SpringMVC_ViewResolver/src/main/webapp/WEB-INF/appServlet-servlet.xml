@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- controller가 수행 후 리턴되는 객체는 ModelAndView
+		 ModelAndView에는 ViewPage이름 + Model(data)
+		 
+		 ViewPage의 실제 물리정보를 다루기 위해서 필요한 library가 바로 ViewResolver
+		 ViewResolver의 디폴트 클래스가 InternalResourceViewResolve임
+		 
+		 디폴트 클래스 외에도 다양한 경로를 표시하기 위해서 BeanNameViewResolver 클래스가 사용된다. 
+		 
+		 하지만, 이런 용도 외에도 아주 중요한 의미가 있다.
+		 FileDownload, Ajax기술을 사용하려면  BeanNameViewResolver 클래스를 알아야한다.
+		 -->
+		 
+	<!-- 누가 먼저 돌 건지?는 propert order설정 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="1"/>
+		<property name="prefix" value="/response/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- beanNameResolver는 우선순위를 0으로 했기 때문에 View Page의 이름을 찾을 때 이 곳에서 먼저 찾는다.
+		 있으면 결과 페이지로 연결, 없으면  ViewResolver가서 찾음
+		 beanNameResolver는 결과페이지 매핑하는 부분이 따로 없다. 그 말은 여기가 아니라, jstlView 빈에서 해줌. -->
+	<bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/>
+	</bean>
+	
+	<bean name="board_result" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="board/result/find_ok.jsp"/>
+	</bean>
+	
+	<bean name="product_result" class="org.springframework.web.servlet.view.JstlView">
+		<property name="url" value="product/result/find_ok.jsp"/>
+	</bean>
+	
+	<context:component-scan base-package="com.encore.spring.controller"/>
+</beans>
