@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- properties file 불러오기 -->
+	<properties resource="config/jdbc.properties"/>
+	
+	<!--settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings -->
+	
+	<!-- alias 주기 -->
+	<typeAliases>
+		<typeAlias type="com.encore.spring.domain.Item" alias="item"/>
+		<!--package name="com.encore.spring.domain"/-->
+	</typeAliases>
+	
+	<!-- transactionManager manger/Datsource   -->
+	<environments default="itemcart">
+		<environment id="itemcart">
+			<transactionManager type="JDBC"/>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="${JDBC.Driver}"/>
+				<property name="url" value="${JDBC.ConnectionURL}"/>
+				<property name="username" value="${JDBC.Username}"/>
+				<property name="password" value="${JDBC.Password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="mapper/item_mapping.xml"/>
+	</mappers>
+</configuration>
