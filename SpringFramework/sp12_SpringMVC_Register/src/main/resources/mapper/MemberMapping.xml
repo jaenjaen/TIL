@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberMapper">
+	
+	<sql id="select-all">
+		SELECT id,password,name,address
+		FROM member
+	</sql>
+	
+	<!-- allView -->
+	<select id="getAllMember" resultType="member">
+		<include refid="select-all"/>
+	</select>
+	
+	<!-- find -->
+	<select id="getMember" parameterType="string" resultType="member">
+		<include refid="select-all"/>
+		WHERE id = #{value}
+	</select>
+	
+	<!-- login -->
+	<select id="login" parameterType="member" resultType="member">
+		<include refid="select-all"/>
+		WHERE id = #{id} and password = #{password}
+	</select>
+	
+	<!-- update -->
+	<update id="updateMember" parameterType="member">
+		UPDATE member
+		<set>
+		<if test="password !=null">
+			password= #{password},
+		</if>
+		<if test="name !=null">
+			name=#{name},
+		</if>
+		<if test="address !=null">
+		 	address= #{address}
+		</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<!-- register -->
+	<insert id="registerMember" parameterType="member">
+		INSERT INTO member(id, password, name, address)
+		VALUES (#{id},#{password},#{name},#{address})
+	</insert>
+</mapper>
