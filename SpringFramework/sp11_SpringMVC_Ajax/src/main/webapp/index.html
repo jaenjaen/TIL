@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var xhr;
+	
+	function startRequset() {
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = callback;
+		
+		xhr.open("get","SearchId.do",true);
+		xhr.send(null);
+	}
+	
+	//응답하는 코드부분의 로직
+	function callback() {
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				var jsonData = JSON.parse(xhr.responseText);
+				alert(jsonData.person.name+" "+jsonData.person.addr);
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<h2>비동기통신 Ajax - json</h2><p>
+	<a href="inset.do">동기통신</a><p>
+	<input type="button" value="비동기통신" onclick="startRequset()">
+</body>
+</html>
