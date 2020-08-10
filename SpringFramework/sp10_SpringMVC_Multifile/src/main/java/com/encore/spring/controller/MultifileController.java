@@ -2,6 +2,7 @@ package com.encore.spring.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class MultifileController {
 		List<String> names = new ArrayList<String>();
 		String root = req.getSession().getServletContext().getRealPath("/");
 		String path = root+"\\upload\\";
-		
+
 		//1업로드 된 파일을 받아온다.
 		List<MultipartFile> flist = vo.getFile();
 		
@@ -41,5 +42,17 @@ public class MultifileController {
 		//3업로드한 파일명(3개)이 출력되도록 결과 페이지를 지정한다 결과페이지 명은 multi_upload_result
 		
 		return new ModelAndView("multi_upload_result","names",names);
+	}
+	
+	@RequestMapping("downloadfile.do")
+	public ModelAndView downloadFile(HttpServletRequest req, String filename) {
+		
+		System.out.println(filename);
+		String root = req.getSession().getServletContext().getRealPath("/");
+		String path = root+"\\upload\\";
+		HashMap map = new HashMap();
+		map.put("path",path);
+		
+		return new ModelAndView("downloadView",map);
 	}
 }
