@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function downloadFile(filename) {
 		if(confirm("다운 받으시겠습니까?")==true){
-			loaction.href="downloadfile.do?filename="+filename;
+			location.href="downloadfile.do?filename="+filename;
 		}
 	}
 </script>
