@@ -19,14 +19,22 @@
 
 <body>
     <div id="app">
+        <h1 v-if="show">볼 수 있다 태그 자체를 숨겨버림 -> 메모리에 올릴 생각도X 토글 같은 경우 사용 함 (권장)
+            <!--대충 굉장한 작업이 있다 가정-->
+            <!-- 주석처리 함 -->
+        </h1>
 
+        <h1 v-show="show">보인다 태그 display를 none함 -> 일단 메모리에 올려 처리하고 숨겨버림
+            <!--대충 굉장한 작업이 있다 가정-->
+            <!-- display:none-->
+        </h1>
     </div>
 
     <script>
         var app = new Vue({
             el: " #app ",
             data: {
-                msg: "Hello Vue! "
+                show: false
             }
         })
     </script>
