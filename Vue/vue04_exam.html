@@ -1,0 +1,51 @@
+<!-- 해보기!
+    모델 데이터에 이름, 나이, 사는 곳을 객체로 선언하고
+    화면에 테이블 형식으로 출력하기!
+    file 이름 vue04_exam.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function() {
+            var model = {
+                name: "김지호",
+                age: 23,
+                addr: "옥천군"
+            }
+
+            var app = new Vue({
+                el: "#exam",
+                data: model
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="exam">
+        <h2>Vue04 해보기</h2>
+        <table border='1'>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>사는곳</th>
+            </tr>
+            <tr>
+                <td>{{name}}</td>
+                <td>{{age}}</td>
+                <td>{{addr}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

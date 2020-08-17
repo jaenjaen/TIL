@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="App">
+        <div>{{title}}</div>
+        <!-- 디렉티브 -->
+        <!-- 데이터를 있는 그대로 출력-->
+        <div v-text="title"></div>
+        <!-- 데이터 내의 태그를 html요소로 인식해서 출력-->
+        <div v-html="title"></div>
+    </div>
+    <!--HTML을 먼저  DOM에 올려놓고 data를 넣어줘야하는데 아래의 script가 위로가면 el 넣을데가 없어서 작동 X-->
+    <script>
+        var model = {
+            title: '<h2>Encore</h2>'
+        }
+        var app = new Vue({
+            el: '#App',
+            data: model
+        })
+    </script>
+</body>
+
+</html>
+
+</html>
