@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h3>{{title}}</h3>
+        </div>
+        <!-- filter는 value 다음에 |를 사용하고 적으면되고
+        method와 다른점은 무조건 Function에 인자값과 반환값이 존재해야함-->
+        <div>
+            <h3>{{title | toUpper}}</h3>
+        </div>
+        <div>
+            <h3>{{title | toLower}}</h3>
+        </div>
+    </div>
+
+    <script>
+        var model = {
+            title: "Encore Academy"
+        }
+        var app = new Vue({
+            el: "#app",
+            data: model,
+            filters: {
+                toUpper: function(value) {
+                    return value.toUpperCase();
+                },
+                toLower: function(value) {
+                    return value.toLowerCase();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

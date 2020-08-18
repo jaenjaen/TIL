@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Methods를 사용하면 {{}}내부에 sum()으로 써야하지만
+            computed를 사용하면 {{}}내부에 함수의 ()를 생략해야한다. (속성취급하기 때문에)
+        
+        Methods는 부를때마다 연산을 진행
+        Computed는 동일값이라면 caching에 저장했다가 거기서 꺼내줌-->
+        <input type="text" v-model="num"><br> 1부터 입력된 수까지의 합계:<span>{{sum}}</span> </div>
+
+    <script>
+        var app = new Vue({
+            el: " #app ",
+            data: {
+                num: 0
+            },
+            computed: {
+                sum: function() {
+                    var n = Number(this.num);
+                    if (Number.isNaN(n) || n < 1) return 0;
+                    return ((1 + n) * n / 2);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
