@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>V-for와 v-if 함께 사용하기</h2>
+    <div id="app">
+        <label> encore 특정 지역 개설된 반수 : </label>
+        <input type="number" v-model="num">
+
+        <ul>
+            <!-- javascript는 다른언어와 달리 ===이 존재한다.
+            ==은 타입상관없이 값만 비교하지만
+            ===은 값은 물론 타입까지 비교한다.
+            0==' ' / 0=='0' / 1== true는 Ture이지만
+            0===' ' / 0==='0' / 1=== true는 false를 반환한다-->
+            <li v-for="(e, index) in encore" v-if="e.count == num">{{index+1}}.{{e.name}}, {{e.count}}개 반</li>
+        </ul>
+        <script>
+            var model = {}
+            var app = new Vue({
+                el: " #app ",
+                data: {
+                    encore: [{
+                        name: '영등포지구',
+                        count: 3
+
+                    }, {
+                        name: '남부지구',
+                        count: 2
+
+                    }, {
+                        name: '서초지구',
+                        count: 7
+
+                    }],
+                    num: 0
+                }
+            })
+        </script>
+</body>
+
+</html>
