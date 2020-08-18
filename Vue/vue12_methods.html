@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-html="title"></div>
+        <div v-text="title"></div>
+        <div>{{title}}</div>
+        <div>{{showHrm()}}</div>
+        <div>{{showMyName("김뫄뫄")}}</div>
+        <button @click="changeMyName">Click</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                title: '<h2>Encore</h2>'
+            },
+            methods: {
+                showHrm: function() {
+                    return "ENCORE" + new Date();
+                },
+                showMyName: function(name, $event) { // event객체와 다른 인자값을 구별하기 위해선 반드시 $를 붙여줘야함
+                    return name + ',' + new Date();
+                },
+                changeMyName: function() {
+                    this.title = 'ENCORE HRM ENCORE HRM'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

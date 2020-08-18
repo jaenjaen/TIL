@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-html="title"></div>
+        <!-- click은 Changename 혹은 함수 changeName() 둘 다 가능한 표현이다.
+        @click은 v-on:click의 축약형 -->
+        <div v-on:click="changeName">{{title}}</div>
+        <div @click="changeName">{{title}}</div>
+
+
+        <script>
+            var model = {
+                title: "<h2>Encore</h2>"
+            }
+            new Vue({
+                el: "#app",
+                data: model,
+                methods: {
+                    changeName: function() {
+                        //view의 모델인 title을 바꾸겠다는 뜻
+                        this.title = '<h1>Summer Vacation</h1>'
+                    }
+                }
+            })
+        </script>
+    </div>
+</body>
+
+</html>
