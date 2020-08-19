@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <!-- vcloak은 채 로딩되지 않은 데이터가 화면에 올라오지 않도록 로딩되는 동안 display 속성을 none으로 지정하는 것 -->
+    <div id="app">
+        <h2 v-cloack>{{title}}</h2>
+    </div>
+    <script>
+        //화살표 함수는 function 생략
+        setTimeout(() => {
+            new Vue({
+                el: '#app',
+                data: {
+                    title: "비밀의숲2"
+                }
+            })
+        }, 2000);
+    </script>
+</body>
+
+</html>
