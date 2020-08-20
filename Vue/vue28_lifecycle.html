@@ -1,0 +1,66 @@
+<!--
+    Vue 인스턴스가 생성될때,
+    중요한 몇 단계를 거친다, 이를 라이프 싸이클이라 함.
+    
+    1.Vue 인스턴스 생성 : created 호출 (hook)
+                          data,el,methods,computed,filter같은 속성들이 활성화
+    2.html DOM에 렌더링, 부착, mount 함 : mounted가 호출
+                                         반응형으로 받아온 데이터를 el에서 지정한 화면단으로 렌더링 시킨다
+    3. 업데이트 : beforeupdate, update가 호출 훅된다.
+                 렌더링한 돔데이터의 값을 변경할 때 마다 계속 호출
+                 만약에 변경된 값들을 Dom을 이용해서 접근하려 한다면 update에서 해야한다
+    4. Vue 인스턴스가 메머리에서 사라짐 : Destroyed가 호출 훅된다.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <span>클릭카운트 : {{count}}</span>
+        <button @click="count++">클릭</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                count: 0
+            },
+            //옵션에 접근할 수 있는 상태가 아님
+            beforeCreate: function() {
+                console.log("beforeCreate" + this.count);
+            },
+            //옵션에 접근 가능
+            //화면과 연결X
+            created: function() {
+                console.log("created" + this.count);
+                console.log("created 연결된 Dom 엘리먼트: " + this.$app);
+            },
+            //화면과 연결
+            beforeMount: function() {
+                console.log("beforeMount" + this.count);
+                console.log("beforeMount 연결된 Dom 엘리먼트: " + this.$el);
+            },
+            //beformount에서도 rendering이 가능하지만 mounted가 더 안전함
+            mounted: function() {
+                console.log("mounted" + this.count)
+            },
+            beforeUpdate: function() {
+                console.log("beforeUpdate" + this.count);
+            },
+            updated: function() {
+                console.log("updated" + this.count);
+            },
+        })
+    </script>
+</body>
+
+</html>

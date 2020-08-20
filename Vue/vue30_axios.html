@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+</head>
+
+<body>
+    <div id="second">
+        <h2>국가 리스트</h2>
+    </div>
+
+    <div id="app">
+        <section v-if="loading">
+            <p>loading...</p>
+        </section>
+        <section v-if="errored">
+            <p>Error!</p>
+        </section>
+        <section v-else>
+            <table>
+                <thead>
+                    <tr>
+                        <th>국가코드</th>
+                        <th>국가명</th>
+                        <th>국기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="n in info">
+                        <td>{{n.code}}</td>
+                        <td>{{n.name}}</td>
+                        <td>
+                            <img :src="n.flag"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data() { //Data:{} -> dat(){}로 변경 restful 같은 동적 데이터를 처리할때는 반드시 data()로 해야함 그리고 받아쓰는거니까 return 필수
+                return {
+                    info: null,
+                    errored: false,
+                    loading: true
+                }
+            },
+            //axios 기술은 항상 mounted에서 돌아감
+            mounted() {
+                //axios.get, axios.post,axios.put 등의 형식으로 저장
+                axios
+                    .get('./flags.json') // 원래 여기 주소
+                    .then(Response => (this.info = Response.data.nationalflags))
+                    .catch(error => {
+                        console.log(error);
+                        this.errrored = true;
+                    })
+                    .finally(() => this.loading = false)
+                    // .then(function(Response) {
+                    //     //this.info = Response.data 함수안에 함수안의 this라서 함수 자체의 객체로 this로 인식해서 arrow함수 씀
+                    // })
+            },
+        })
+    </script>
+</body>
+
+</html>
+
+</html>
