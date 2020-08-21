@@ -20,10 +20,9 @@
             <a href='./index02.html'>아이디로 찾기</a> |
             <a href='./index01.html'>모든사원 보기</a>
         </div>
-        <!--div class="search_box" align="center">
-            이름으로 사원 찾기 :
-            <input type="text" name="name" v-model="cname">
-        </div-->
+        <div class="search_box" align="center">
+            이름으로 사원 검색 :
+            <input type="text" v-model="cname" @keyup.enter="findbyname"> </div>
         <table class='list_table'>
             <col width="10%">
             <col width="20%">
@@ -56,8 +55,10 @@
             data() {
                 return {
                     info: [],
+                    cname: '', // 제이슨 초기화
                     loading: true,
-                    errored: false
+                    errored: false,
+                    empEmpty: true
                 }
             },
             filters: { //filters는 반드시 리턴 있어야 함
@@ -75,6 +76,18 @@
                     })
                     .finally(() => this.loading = false)
             },
+            methods: {
+                findbyname: function() {
+                    axios
+                        .get('http://127.0.0.1:7777/api/findLikeEmployees/' + this.cname)
+                        .then(response => this.info = response.data)
+                        .catch(error => {
+                            console.log(error);
+                            errored = true;
+                        })
+                        .finally(() => this.empEmpty = false)
+                }
+            }
         })
     </script>
 </body>
